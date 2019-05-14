@@ -1,3 +1,4 @@
 node_modules/
 dist/
 BUILD
+.DS_Store

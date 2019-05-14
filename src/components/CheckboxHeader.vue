@@ -19,16 +19,6 @@ export default {
   model: {
     prop: "checked",
     event: "change"
-  },
-  mounted() {
-    if (this.$parent) {
-      this.$parent.$emit("add-header", this);
-    }
-  },
-  beforeDestroy() {
-    if (this.$parent) {
-      this.$parent.$emit("del-header", this);
-    }
   }
 };
 </script>

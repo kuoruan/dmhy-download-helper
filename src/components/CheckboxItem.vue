@@ -3,7 +3,6 @@
     input.select(
       type="checkbox",
       :checked="checked",
-      :data-link="link",
       :data-index="index",
       @change="$emit('change', $event.target.checked)"
     )
@@ -29,11 +28,6 @@ export default {
   model: {
     prop: "checked",
     event: "change"
-  },
-  data() {
-    return {
-      link: this.magnet
-    };
   }
 };
 </script>

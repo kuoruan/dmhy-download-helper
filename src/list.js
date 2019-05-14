@@ -17,29 +17,29 @@ export function createList(selector) {
     mounted() {
       this.$nextTick(function() {
         const table = this.$el;
-        const head = table.tHead;
-        const bodies = table.tBodies;
 
-        if (head && bodies) {
-          if (head.rows && head.rows.length > 0) {
-            this.insertHeaderToRow(head.rows[0]);
+        if (table.tHead && table.tBodies) {
+          if (table.tHead.rows && table.tHead.rows.length > 0) {
+            this.insertHeaderToRow(table.tHead.rows[0]);
           }
 
           let index = 0;
-          for (let i = 0, len = bodies.length; i < len; i++) {
-            let body = bodies[i];
+          for (let i = 0, len = table.tBodies.length; i < len; i++) {
+            let body = table.tBodies[i];
 
             for (let j = 0, rowLen = body.rows.length; j < rowLen; j++) {
               this.insertCheckBoxToRow(body.rows[j], index++);
             }
           }
         } else {
-          for (let i = 0, len = table.rows.length; i < len; i++) {
-            let row = table.rows[i];
-            if (i === 0) {
-              this.insertHeaderToRow(row);
-            } else {
-              this.insertCheckBoxToRow(row, i - 1);
+          if (table.rows) {
+            for (let i = 0, len = table.rows.length; i < len; i++) {
+              let row = table.rows[i];
+              if (i === 0) {
+                this.insertHeaderToRow(row);
+              } else {
+                this.insertCheckBoxToRow(row, i - 1);
+              }
             }
           }
         }
@@ -57,10 +57,14 @@ export function createList(selector) {
       this.all.splice(0, this.all.length);
       this.selected.splice(0, this.selected.length);
     },
+    computed: {
+      links() {
+        return this.selected.map(item => item.magnet).filter(m => !!m);
+      }
+    },
     watch: {
-      selected(val) {
-        const links = val.map(item => item.link).filter(m => !!m);
-        this.$emit("change", links);
+      links(val) {
+        this.$emit("change", val);
       }
     },
     methods: {

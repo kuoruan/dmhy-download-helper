@@ -41,7 +41,7 @@ export default {
   position: fixed
   left: 50%
   bottom: 30px
-  z-index: 1
+  z-index: 99
   border-radius: 2px
   background-color: #333
   transform: translateX(-50%)

@@ -2,7 +2,7 @@
   th.header(width="40")
     input.select-all(
       type="checkbox",
-      :checked="checked",
+      v-model="checked",
       @change="$emit('change', $event.target.checked)"
     )
 </template>
@@ -10,15 +10,10 @@
 <script>
 export default {
   name: "CheckboxHeader",
-  props: {
-    checked: {
-      type: Boolean,
-      default: false
-    }
-  },
-  model: {
-    prop: "checked",
-    event: "change"
+  data() {
+    return {
+      checked: false
+    };
   }
 };
 </script>

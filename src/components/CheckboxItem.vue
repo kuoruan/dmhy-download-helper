@@ -2,7 +2,7 @@
   td(width="40")
     input.select(
       type="checkbox",
-      :checked="checked",
+      v-model="checked",
       :data-index="index",
       @change="$emit('change', $event.target.checked)"
     )
@@ -16,18 +16,15 @@ export default {
       type: Number,
       default: 0
     },
-    checked: {
-      type: Boolean,
-      default: false
-    },
     magnet: {
       type: String,
       default: ""
     }
   },
-  model: {
-    prop: "checked",
-    event: "change"
+  data() {
+    return {
+      checked: false
+    };
   }
 };
 </script>

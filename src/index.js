@@ -1,11 +1,13 @@
 import "@/assets/css/common.styl";
-import { createList, createToolbar, createToast } from "@/vm";
+import { createList, createToolbar, createToast, createLinksPopup } from "@/vm";
 import { magnetLinksToText } from "@/utils";
 
 const list = createList("#topic_list");
 
 if (list.$el && list.$el.parentNode) {
   const toast = createToast();
+
+  let popupIndex = 10;
 
   const onCopyClick = function(opts) {
     const content = magnetLinksToText(list.links, opts);
@@ -23,7 +25,19 @@ if (list.$el && list.$el.parentNode) {
   const onShowClick = function(opts) {
     const content = magnetLinksToText(list.links, opts);
     if (content) {
-      alert(content);
+      const popup = createLinksPopup({
+        zIndex: popupIndex++,
+        links: content
+      });
+      popup.$on("close", function() {
+        popup.$off("close");
+        try {
+          popup.$el.remove();
+        } catch (e) {
+          document.body.removeChild(popup.$el);
+        }
+      });
+      document.body.appendChild(popup.$el);
     }
   };
 

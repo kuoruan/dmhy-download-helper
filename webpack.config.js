@@ -37,8 +37,7 @@ module.exports = (env, options) => {
   return {
     mode: options.mode,
     entry: {
-      [packageConfig.name]: resolve("src", "index.js"),
-      [`${packageConfig.name}.min`]: resolve("src", "index.js")
+      [packageConfig.name]: resolve("src", "index.js")
     },
     output: {
       path: path.join(__dirname, "dist"),
@@ -110,20 +109,10 @@ module.exports = (env, options) => {
       minimize: true,
       minimizer: [
         new TerserPlugin({
-          test: /((?!min).)*\.user\.js(\?.*)?$/i,
           terserOptions: {
             mangle: false,
             output: {
               beautify: true
-            }
-          }
-        }),
-        new TerserPlugin({
-          test: /\.min\.user\.js(\?.*)?$/i,
-          terserOptions: {
-            mangle: true,
-            output: {
-              beautify: false
             }
           }
         }),

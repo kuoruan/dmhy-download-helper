@@ -31,10 +31,6 @@
 export default {
   name: "ToolBar",
   props: {
-    visible: {
-      type: Boolean,
-      default: false
-    },
     position: {
       type: String,
       default: "top"
@@ -46,6 +42,7 @@ export default {
       linebreak = "\r\n";
     }
     return {
+      visible: false,
       opts: {
         clean: false,
         linebreak: linebreak

@@ -3,6 +3,7 @@ import ToolBar from "@/components/ToolBar.vue";
 import CheckboxHeader from "@/components/CheckboxHeader.vue";
 import CheckboxItem from "@/components/CheckboxItem.vue";
 import Toast from "@/components/Toast.vue";
+import LinksPopup from "@/components/LinksPopup.vue";
 
 export function createList(selector) {
   const HeaderVM = Vue.extend(CheckboxHeader);
@@ -71,11 +72,7 @@ export function createList(selector) {
     },
     methods: {
       insertHeaderToRow(row) {
-        const th = new HeaderVM({
-          propsData: {
-            checked: false
-          }
-        });
+        const th = new HeaderVM();
         th.$on("change", this.onSelectAllChange);
         th.$mount();
         row.insertBefore(th.$el, row.cells[0]);
@@ -87,7 +84,6 @@ export function createList(selector) {
         const tdDOM = row.insertCell(0);
         const td = new ItemVM({
           propsData: {
-            checked: false,
             index: index,
             magnet: linkDOM ? linkDOM.href : ""
           }
@@ -141,4 +137,12 @@ export function createToast() {
 
   Object.defineProperty(Vue.prototype, "$toast", { value: toast });
   return toast;
+}
+
+export function createLinksPopup(propsData) {
+  const LinksPopupVM = Vue.extend(LinksPopup);
+
+  return new LinksPopupVM({
+    propsData: propsData
+  }).$mount();
 }

@@ -1,16 +1,22 @@
 import "@/assets/css/common.styl";
-import { createList } from "@/list";
-import { createToolbar } from "@/toolbar";
+import { createList, createToolbar, createToast } from "@/vm";
 import { magnetLinksToText } from "@/utils";
 
 const list = createList("#topic_list");
 
 if (list.$el && list.$el.parentNode) {
+  const toast = createToast();
+
   const onCopyClick = function(opts) {
     const content = magnetLinksToText(list.links, opts);
 
     if (content) {
-      GM_setClipboard(content, "{ type: 'text', mimetype: 'text/plain'}");
+      try {
+        GM_setClipboard(content, "{ type: 'text', mimetype: 'text/plain'}");
+        toast.display("复制成功！");
+      } catch (e) {
+        toast.display("复制失败，请重试。");
+      }
     }
   };
 

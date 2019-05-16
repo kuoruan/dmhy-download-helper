@@ -1,6 +1,8 @@
 import Vue from "vue";
+import ToolBar from "@/components/ToolBar.vue";
 import CheckboxHeader from "@/components/CheckboxHeader.vue";
 import CheckboxItem from "@/components/CheckboxItem.vue";
+import Toast from "@/components/Toast.vue";
 
 export function createList(selector) {
   const HeaderVM = Vue.extend(CheckboxHeader);
@@ -116,12 +118,27 @@ export function createList(selector) {
           this.selected.splice(selectedIndex, 1);
         }
 
-        if (this.all.length === this.selected.length) {
-          if (this.header) {
-            this.header.checked = true;
-          }
+        if (this.header) {
+          this.header.checked = this.all.length === this.selected.length;
         }
       }
     }
   });
+}
+
+export function createToolbar(propsData) {
+  const ToolBarVM = Vue.extend(ToolBar);
+  return new ToolBarVM({
+    propsData: propsData
+  }).$mount();
+}
+
+export function createToast() {
+  const ToastVM = Vue.extend(Toast);
+
+  const toast = new ToastVM().$mount();
+  document.body.appendChild(toast.$el);
+
+  Object.defineProperty(Vue.prototype, "$toast", { value: toast });
+  return toast;
 }

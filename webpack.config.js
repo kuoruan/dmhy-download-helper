@@ -10,6 +10,10 @@ const userscript = require("./userscript");
 
 const buildNumberFile = path.resolve(__dirname, "BUILD");
 
+function resolve(...paths) {
+  return path.resolve(__dirname, ...paths);
+}
+
 function writeNewBuildNumber(number) {
   fs.writeFile(buildNumberFile, number, function(err) {
     if (err) {
@@ -32,22 +36,22 @@ module.exports = (env, options) => {
 
   return {
     mode: options.mode,
-    entry: path.resolve(__dirname, "src", "index.js"),
+    entry: {
+      [packageConfig.name]: resolve("src", "index.js"),
+      [`${packageConfig.name}.min`]: resolve("src", "index.js")
+    },
     output: {
       path: path.join(__dirname, "dist"),
-      filename: `${packageConfig.name}.user.js`
+      filename: "[name].user.js"
     },
     resolve: {
       alias: {
-        "@": path.resolve(__dirname, "src")
+        "@": resolve("src")
       }
     },
     resolveLoader: {
       alias: {
-        "userscript-style-loader": path.resolve(
-          __dirname,
-          "userscript-style-loader.js"
-        )
+        "userscript-style-loader": resolve("userscript-style-loader.js")
       }
     },
     devServer: {
@@ -100,28 +104,41 @@ module.exports = (env, options) => {
       new VueLoaderPlugin(),
       new webpack.optimize.LimitChunkCountPlugin({
         maxChunks: 1
-      }),
-      new TerserPlugin({
-        terserOptions: {
-          mangle: isProduction,
-          output: {
-            beautify: !isProduction
-          }
-        }
-      }),
-      new webpack.BannerPlugin({
-        banner: function() {
-          if (!isProduction) {
-            writeNewBuildNumber(++buildNumber);
-          }
-
-          return userscript.createBanner(!isProduction, buildNumber);
-        },
-        raw: true
       })
     ],
     optimization: {
-      minimize: false
+      minimize: true,
+      minimizer: [
+        new TerserPlugin({
+          test: /((?!min).)*\.user\.js(\?.*)?$/i,
+          terserOptions: {
+            mangle: false,
+            output: {
+              beautify: true
+            }
+          }
+        }),
+        new TerserPlugin({
+          test: /\.min\.user\.js(\?.*)?$/i,
+          terserOptions: {
+            mangle: true,
+            output: {
+              beautify: false
+            }
+          }
+        }),
+        new webpack.BannerPlugin({
+          banner: function() {
+            if (!isProduction) {
+              writeNewBuildNumber(++buildNumber);
+            }
+
+            return userscript.createBanner(!isProduction, buildNumber);
+          },
+          raw: true,
+          entryOnly: true
+        })
+      ]
     }
   };
 };

@@ -10,14 +10,16 @@
         type="checkbox",
         v-model="opts.clean"
       )
-      label(:for="`linebreak-${position}`") 换行符：
+      label(:for="`separator-${position}`") 分隔符：
       select(
-        v-model="opts.linebreak",
-        :id="`linebreak-${position}`"
+        v-model="opts.separator",
+        :id="`separator-${position}`"
       )
         option(value="\n") \n
         option(value="\r\n") \r\n
-        option(value="\r") \r
+        option(value="\t") \t
+        option(value=" ") 空格
+        option(value=",") ,
       .btn-wrapper
         button.btn(
           @click="$emit('copy', opts)"
@@ -28,6 +30,7 @@
 </template>
 
 <script>
+import { getDefaultLinebreak } from "@/utils";
 export default {
   name: "ToolBar",
   props: {
@@ -37,15 +40,12 @@ export default {
     }
   },
   data() {
-    let linebreak = "\n";
-    if (navigator.userAgent.indexOf("Windows") > -1) {
-      linebreak = "\r\n";
-    }
+    let linebreak = getDefaultLinebreak();
     return {
       visible: false,
       opts: {
         clean: false,
-        linebreak: linebreak
+        separator: linebreak
       }
     };
   }
@@ -86,4 +86,5 @@ export default {
       background-color: white
       border: 1px solid #247
       margin: 0 5px
+      outline: none
 </style>

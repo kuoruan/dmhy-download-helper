@@ -1,9 +1,8 @@
 <template lang="pug">
   div.overlay(
     @click.self="$emit('overlay-click')",
-    @touchmove.self.prevent="",
-    @mousemove.self.prevent="",
-    @mousewheel.self.prevent="",
+    @touchmove="onScroll",
+    @mousewheel="onScroll",
     :style="{'z-index': zIndex}"
   )
     div.popup(
@@ -29,6 +28,22 @@ export default {
       type: Number,
       default: 0
     }
+  },
+  methods: {
+    onScroll(evt) {
+      // https://github.com/rhyek/vue-prevent-parent-scroll
+      // https://github.com/zpfled/scroll-parent
+      const el = evt.target;
+      const { overflow, overflowY, overflowX } = window.getComputedStyle(el);
+      if (
+        !/(auto|scroll)/.test(overflow + overflowX + overflowY) || // overflow is auto of scroll
+        ((el.scrollTop === 0 && evt.deltaY < 0) ||
+          (Math.abs(el.scrollTop - (el.scrollHeight - el.clientHeight)) <= 1 &&
+            evt.deltaY > 0)) // scroll at top or bottom
+      ) {
+        evt.preventDefault();
+      }
+    }
   }
 };
 </script>
@@ -41,6 +56,7 @@ export default {
   left: 0
   right: 0
   text-align: center
+  background-color: rgba(0, 0, 0, .3)
   &:after
     content: ""
     display: inline-block
@@ -54,9 +70,8 @@ export default {
     text-align: left
     overflow: hidden
     backface-visibility: hidden
-    border-radius: 4px
-    border: 1px solid #ebeef5
-    padding: 10px
+    border: 1px solid #247
+    padding: 2px
     &.middle
       vertical-align: middle
 </style>

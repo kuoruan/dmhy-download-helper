@@ -1,6 +1,6 @@
 import "@/assets/css/common.styl";
 import { createList, createToolbar, createToast, createLinksPopup } from "@/vm";
-import { magnetLinksToText } from "@/utils";
+import { magnetLinksWithOptions } from "@/utils";
 
 const list = createList("#topic_list");
 
@@ -10,10 +10,11 @@ if (list.$el && list.$el.parentNode) {
   let popupIndex = 10;
 
   const onCopyClick = function(opts) {
-    const content = magnetLinksToText(list.links, opts);
+    const links = magnetLinksWithOptions(list.links, opts);
 
-    if (content) {
+    if (links.length > 0) {
       try {
+        const content = links.join(opts.separator);
         GM_setClipboard(content, "{ type: 'text', mimetype: 'text/plain'}");
         toast.display("复制成功！");
       } catch (e) {
@@ -23,11 +24,12 @@ if (list.$el && list.$el.parentNode) {
   };
 
   const onShowClick = function(opts) {
-    const content = magnetLinksToText(list.links, opts);
-    if (content) {
+    const links = magnetLinksWithOptions(list.links, opts);
+    if (links.length > 0) {
       const popup = createLinksPopup({
         zIndex: popupIndex++,
-        links: content
+        links: links,
+        options: opts
       });
       popup.$on("close", function() {
         popup.$off("close");

@@ -1,13 +1,19 @@
-export function magnetLinksToText(magnetLinks, opts) {
+export function magnetLinksWithOptions(magnetLinks, opts) {
   if (!magnetLinks || magnetLinks.length <= 0) {
-    return "";
+    return [];
   }
 
   if (opts.clean) {
-    return magnetLinks
-      .map(l => l.substring(0, l.indexOf("&")))
-      .join(opts.linebreak);
+    return magnetLinks.map(l => l.substring(0, l.indexOf("&")));
+  }
+  return [...magnetLinks];
+}
+
+export function getDefaultLinebreak() {
+  let linebreak = "\n";
+  if (navigator.userAgent.indexOf("Windows") > -1) {
+    linebreak = "\r\n";
   }
 
-  return magnetLinks.join(opts.linebreak);
+  return linebreak;
 }

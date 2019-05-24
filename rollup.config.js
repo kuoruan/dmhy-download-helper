@@ -97,6 +97,7 @@ module.exports = {
         warnings: false,
         drop_console: false,
         reduce_vars: false,
+        sequences: false,
         keep_classnames: true,
         keep_fargs: true,
         keep_fnames: true

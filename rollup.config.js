@@ -4,6 +4,7 @@ const path = require("path");
 const AliasPlugin = require("rollup-plugin-alias");
 const ResolvePlugin = require("rollup-plugin-node-resolve");
 const CommonJSPlugin = require("rollup-plugin-commonjs");
+const BabelPlugin = require("rollup-plugin-babel");
 const ImagePulgin = require("rollup-plugin-image");
 const PostCSSPlugin = require("rollup-plugin-postcss");
 const StylusPlugin = require("rollup-plugin-stylus-compiler");
@@ -12,8 +13,7 @@ const ServePlugin = require("rollup-plugin-serve");
 const ESLintPlugin = require("rollup-plugin-eslint");
 const TerserPlugin = require("rollup-plugin-terser");
 
-const pkg = require("./package.json");
-const userscript = require("./userscript");
+const { config, createBanner } = require("./userscript");
 
 const isProduction = process.env.NODE_ENV === "production";
 const buildNumberFile = path.resolve(__dirname, "BUILD");
@@ -41,7 +41,7 @@ function resolve(...paths) {
 
 module.exports = {
   input: {
-    [pkg.name]: resolve("src", "index.js")
+    [config.pkgName]: resolve("src", "index.js")
   },
   external: ["vue"],
   output: {
@@ -53,7 +53,7 @@ module.exports = {
         writeNewBuildNumber(++buildNumber);
       }
 
-      return userscript.createBanner(!isProduction, buildNumber);
+      return createBanner(!isProduction, buildNumber);
     },
     globals: {
       vue: "Vue"
@@ -86,6 +86,9 @@ module.exports = {
     }),
     ResolvePlugin(),
     CommonJSPlugin(),
+    BabelPlugin({
+      exclude: "node_modules/**"
+    }),
     TerserPlugin.terser({
       sourcemap: false,
       mangle: false,

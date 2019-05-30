@@ -1,7 +1,7 @@
 <template lang="pug">
   li
     div(
-      @click="toggle"
+      @click="isOpen = !isOpen"
     ) {{ name }}
     ul(
       v-show="isOpen",
@@ -19,9 +19,21 @@
 export default {
   name: "TreeItem",
   props: {
+    key: {
+      type: Number,
+      default: 0
+    },
+    parentKey: {
+      type: Number,
+      default: 0
+    },
     name: {
       type: String,
       default: ""
+    },
+    level: {
+      type: Number,
+      default: 1
     },
     size: {
       type: String,
@@ -44,8 +56,6 @@ export default {
       return !this.size && (this.children && this.children.length > 0);
     }
   },
-  methods: {
-    toggle() {}
-  }
+  methods: {}
 };
 </script>

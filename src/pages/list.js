@@ -12,8 +12,7 @@ const ToolBarVM = Vue.extend(ToolBar);
 const LinksPopupVM = Vue.extend(LinksPopup);
 
 export function mountListElement(el, onError) {
-  return new Vue({
-    el: el,
+  const list = new Vue({
     data() {
       return {
         header: null,
@@ -33,7 +32,7 @@ export function mountListElement(el, onError) {
           !tableContainer || tableContainer.className.indexOf("table") < 0)
         ) {
           // Not in list page or list not in table container .table
-          onError();
+          onError(this);
           return;
         }
 
@@ -206,4 +205,6 @@ export function mountListElement(el, onError) {
       }
     }
   });
+
+  list.$mount(el);
 }

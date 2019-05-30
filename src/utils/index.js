@@ -19,12 +19,11 @@ export function getDefaultLinebreak() {
 }
 
 export function hashCode(str) {
-  let hash = 0,
-    i,
-    chr;
-  if (str.length === 0) return hash;
-  for (i = 0; i < str.length; i++) {
-    chr = str.charCodeAt(i);
+  let hash = 0;
+  if (!str || str.length <= 0) return hash;
+
+  for (let i = 0, len = str.length; i < len; i++) {
+    let chr = str.charCodeAt(i);
     hash = (hash << 5) - hash + chr;
     hash |= 0;
   }

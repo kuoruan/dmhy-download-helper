@@ -16,12 +16,12 @@ devDependencies:
   rollup-plugin-babel: 4.3.2
   rollup-plugin-commonjs: 10.0.0
   rollup-plugin-eslint: 6.0.0
-  rollup-plugin-image: 1.0.2
   rollup-plugin-node-resolve: 5.0.0
   rollup-plugin-postcss: 2.0.3
   rollup-plugin-serve: 1.0.1
   rollup-plugin-stylus-compiler: 1.0.1
   rollup-plugin-terser: 5.0.0
+  rollup-plugin-url: 2.2.1
   rollup-plugin-vue: 5.0.0
   stylus: 0.54.5
   vue-template-compiler: 2.6.10
@@ -1895,10 +1895,6 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-De4/7TH81GlhjOc0IJn8GvoL2xM=
-  /estree-walker/0.2.1:
-    dev: true
-    resolution:
-      integrity: sha1-va/oCVOD2EFNXcLs9MkXO225QS4=
   /estree-walker/0.6.1:
     dev: true
     resolution:
@@ -2994,6 +2990,10 @@ packages:
     hasBin: true
     resolution:
       integrity: sha1-MAV0OOrGz3+MR2fzhkjWaX11yQM=
+  /mkpath/1.0.0:
+    dev: true
+    resolution:
+      integrity: sha1-67Opd+evHGg65v2hK1Raa6bFhT0=
   /ms/2.0.0:
     dev: true
     resolution:
@@ -4112,12 +4112,6 @@ packages:
     dev: true
     resolution:
       integrity: sha512-iNH5l1LYNPCKCwQuLWzXdE0nd8d96yXuefP6YxDsh9WCF/+IS9n1n6F3yM/AMWEyIdquDwe7upG3vEYoV4BDpA==
-  /rollup-plugin-image/1.0.2:
-    dependencies:
-      rollup-pluginutils: 1.5.2
-    dev: true
-    resolution:
-      integrity: sha1-d8Z4La7evubgqFjEAXkFhGkZ2io=
   /rollup-plugin-node-resolve/5.0.0:
     dependencies:
       '@types/resolve': 0.0.8
@@ -4176,6 +4170,16 @@ packages:
       rollup: '>=0.66.0 <2'
     resolution:
       integrity: sha512-W+jJ4opYnlmNyVW0vtRufs+EGf68BIJ7bnOazgz8mgz8pA9lUyrEifAhPs5y9M16wFeAyBGaRjKip4dnFBtXaw==
+  /rollup-plugin-url/2.2.1:
+    dependencies:
+      mime: 2.4.3
+      mkpath: 1.0.0
+      rollup-pluginutils: 2.7.1
+    dev: true
+    peerDependencies:
+      rollup: '>=0.60.0'
+    resolution:
+      integrity: sha512-Zw7u1SX64LDBty38ghqBVwc55JhQDlvXPt0fSzwRY7Mdlhu6wtQq5t2q1siHi7SLwRqgvAMeuJGjOqPOIB/sSw==
   /rollup-plugin-vue/5.0.0:
     dependencies:
       '@vue/component-compiler': 4.0.0
@@ -4192,13 +4196,6 @@ packages:
       vue-template-compiler: '*'
     resolution:
       integrity: sha512-Yz1iq8PCzfsUnVg4Jv9pj2m88j+Y9/Mc8nai3QYCVl/3sMpLuHR+QV8Qf6+FaCvt2KaP6kJSyQvAnWdn1YFRTQ==
-  /rollup-pluginutils/1.5.2:
-    dependencies:
-      estree-walker: 0.2.1
-      minimatch: 3.0.4
-    dev: true
-    resolution:
-      integrity: sha1-HhVud4+UtyVb+hs9AXi+j1xVJAg=
   /rollup-pluginutils/2.7.1:
     dependencies:
       estree-walker: 0.6.1
@@ -4977,12 +4974,12 @@ specifiers:
   rollup-plugin-babel: ^4.3.2
   rollup-plugin-commonjs: ^10.0.0
   rollup-plugin-eslint: ^6.0.0
-  rollup-plugin-image: ^1.0.2
   rollup-plugin-node-resolve: ^5.0.0
   rollup-plugin-postcss: ^2.0.3
   rollup-plugin-serve: ^1.0.1
   rollup-plugin-stylus-compiler: ^1.0.1
   rollup-plugin-terser: ^5.0.0
+  rollup-plugin-url: ^2.2.1
   rollup-plugin-vue: ^5.0.0
   stylus: ^0.54.5
   vue: ^2.6.10

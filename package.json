@@ -17,6 +17,9 @@
     "url": "https://github.com/kuoruan/dmhy-download-helper/issues"
   },
   "homepage": "https://github.com/kuoruan/dmhy-download-helper#readme",
+  "dependencies": {
+    "vue": "^2.6.10"
+  },
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
@@ -33,17 +36,14 @@
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-commonjs": "^10.0.0",
     "rollup-plugin-eslint": "^6.0.0",
-    "rollup-plugin-image": "^1.0.2",
     "rollup-plugin-node-resolve": "^5.0.0",
     "rollup-plugin-postcss": "^2.0.3",
     "rollup-plugin-serve": "^1.0.1",
     "rollup-plugin-stylus-compiler": "^1.0.1",
     "rollup-plugin-terser": "^5.0.0",
+    "rollup-plugin-url": "^2.2.1",
     "rollup-plugin-vue": "^5.0.0",
     "stylus": "^0.54.5",
     "vue-template-compiler": "^2.6.10"
-  },
-  "dependencies": {
-    "vue": "^2.6.10"
   }
 }

@@ -20,5 +20,6 @@ module.exports = {
   source: "https://github.com/kuoruan/dmhy-download-helper.git",
   license: "MIT - https://opensource.org/licenses/MIT",
   "run-at": "document-end",
-  version: packageConfig.version || "1.0.0"
+  version: packageConfig.version || "1.0.0",
+  icon: "https://www.google.cn/s2/favicons?domain=share.dmhy.org"
 };

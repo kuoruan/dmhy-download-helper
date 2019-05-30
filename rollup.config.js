@@ -5,7 +5,7 @@ const AliasPlugin = require("rollup-plugin-alias");
 const ResolvePlugin = require("rollup-plugin-node-resolve");
 const CommonJSPlugin = require("rollup-plugin-commonjs");
 const BabelPlugin = require("rollup-plugin-babel");
-const ImagePulgin = require("rollup-plugin-image");
+const UrlPulgin = require("rollup-plugin-url");
 const PostCSSPlugin = require("rollup-plugin-postcss");
 const StylusPlugin = require("rollup-plugin-stylus-compiler");
 const VuePlugin = require("rollup-plugin-vue");
@@ -80,8 +80,9 @@ module.exports = {
     PostCSSPlugin({
       include: "**/*.css"
     }),
-    ImagePulgin({
-      include: "src/**",
+    UrlPulgin({
+      limit: 1024 * 1024,
+      include: ["**/*.ico"],
       exclude: "node_modules/**"
     }),
     ResolvePlugin(),

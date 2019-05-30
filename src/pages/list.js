@@ -2,24 +2,40 @@ import Vue from "vue";
 import ToolBar from "@/components/ToolBar.vue";
 import CheckboxHeader from "@/components/CheckboxHeader.vue";
 import CheckboxItem from "@/components/CheckboxItem.vue";
-import Toast from "@/components/Toast.vue";
 import LinksPopup from "@/components/LinksPopup.vue";
+import { magnetLinksWithOptions } from "@/utils";
 
-export function createList(selector) {
-  const HeaderVM = Vue.extend(CheckboxHeader);
-  const ItemVM = Vue.extend(CheckboxItem);
+const HeaderVM = Vue.extend(CheckboxHeader);
+const ItemVM = Vue.extend(CheckboxItem);
+
+const ToolBarVM = Vue.extend(ToolBar);
+const LinksPopupVM = Vue.extend(LinksPopup);
+
+export function mountListElement(el, onError) {
   return new Vue({
-    el: selector,
+    el: el,
     data() {
       return {
         header: null,
         all: [],
-        selected: []
+        selected: [],
+        popupIndex: 10,
+        toolbars: []
       };
     },
     mounted() {
       this.$nextTick(function() {
         const table = this.$el;
+        let tableContainer;
+        if (
+          !table.parentNode ||
+          ((tableContainer = table.parentNode.parentNode),
+          !tableContainer || tableContainer.className.indexOf("table") < 0)
+        ) {
+          // Not in list page or list not in table container .table
+          onError();
+          return;
+        }
 
         if (table.tHead && table.tBodies) {
           if (table.tHead.rows && table.tHead.rows.length > 0) {
@@ -46,6 +62,8 @@ export function createList(selector) {
             }
           }
         }
+
+        this.initToolBars(tableContainer);
       });
     },
     beforeDestroy() {
@@ -57,8 +75,14 @@ export function createList(selector) {
       this.all.forEach(item => {
         item.$off("change");
       });
+      this.toolbars.forEach(t => {
+        t.$off("copy");
+        t.$off("show");
+      });
+
       this.all.splice(0, this.all.length);
       this.selected.splice(0, this.selected.length);
+      this.toolbars.splice(0, this.toolbars.length);
     },
     computed: {
       links() {
@@ -67,14 +91,43 @@ export function createList(selector) {
     },
     watch: {
       links(val) {
-        this.$emit("change", val);
+        const isEmpty = !val || val.length <= 0;
+        this.toolbars.forEach(t => {
+          t.visible = !isEmpty;
+        });
       }
     },
     methods: {
+      initToolBars(tableContainer) {
+        const headerToolbar = new ToolBarVM({
+          propsData: {
+            position: "top"
+          }
+        }).$mount();
+
+        headerToolbar.$on("copy", this.onCopyLinks);
+        headerToolbar.$on("show", this.onShowLinks);
+
+        const bottomToobar = new ToolBarVM({
+          propsData: {
+            position: "bottom"
+          }
+        }).$mount();
+        bottomToobar.$on("copy", this.onCopyLinks);
+        bottomToobar.$on("show", this.onShowLinks);
+
+        tableContainer.insertBefore(
+          headerToolbar.$el,
+          tableContainer.firstChild
+        );
+        tableContainer.appendChild(bottomToobar.$el);
+
+        this.toolbars.push(headerToolbar, bottomToobar);
+      },
       insertHeaderToRow(row) {
-        const th = new HeaderVM();
+        const th = new HeaderVM().$mount();
         th.$on("change", this.onSelectAllChange);
-        th.$mount();
+
         row.insertBefore(th.$el, row.cells[0]);
         this.header = th;
       },
@@ -87,13 +140,12 @@ export function createList(selector) {
             index: index,
             magnet: linkDOM ? linkDOM.href : ""
           }
-        });
+        }).$mount(tdDOM);
 
         const _self = this;
         td.$on("change", function(checked) {
           _self.onItemSelectChange(td, checked);
         });
-        td.$mount(tdDOM);
         this.all.push(td);
       },
       onSelectAllChange(checked) {
@@ -117,32 +169,41 @@ export function createList(selector) {
         if (this.header) {
           this.header.checked = this.all.length === this.selected.length;
         }
+      },
+      onCopyLinks(opts) {
+        const links = magnetLinksWithOptions(this.links, opts);
+
+        if (links.length > 0) {
+          try {
+            const content = links.join(opts.separator);
+            GM_setClipboard(content, "{ type: 'text', mimetype: 'text/plain'}");
+            this.$toast.display("复制成功！");
+          } catch (e) {
+            this.$toast.display("复制失败，请重试。");
+          }
+        }
+      },
+      onShowLinks(opts) {
+        const links = magnetLinksWithOptions(this.links, opts);
+        if (links.length > 0) {
+          const popup = new LinksPopupVM({
+            propsData: {
+              zIndex: this.popupIndex++,
+              links: links,
+              options: opts
+            }
+          }).$mount();
+          popup.$on("close", function() {
+            popup.$off("close");
+            try {
+              popup.$el.remove();
+            } catch (e) {
+              document.body.removeChild(popup.$el);
+            }
+          });
+          document.body.appendChild(popup.$el);
+        }
       }
     }
   });
-}
-
-export function createToolbar(propsData) {
-  const ToolBarVM = Vue.extend(ToolBar);
-  return new ToolBarVM({
-    propsData: propsData
-  }).$mount();
-}
-
-export function createToast() {
-  const ToastVM = Vue.extend(Toast);
-
-  const toast = new ToastVM().$mount();
-  document.body.appendChild(toast.$el);
-
-  Object.defineProperty(Vue.prototype, "$toast", { value: toast });
-  return toast;
-}
-
-export function createLinksPopup(propsData) {
-  const LinksPopupVM = Vue.extend(LinksPopup);
-
-  return new LinksPopupVM({
-    propsData: propsData
-  }).$mount();
 }

@@ -41,7 +41,7 @@ function resolve(...paths) {
 
 module.exports = {
   input: {
-    [config.pkgName]: resolve("src", "index.js")
+    [config.pkgName]: resolve("src", "main.js")
   },
   external: ["vue"],
   output: {
@@ -61,7 +61,7 @@ module.exports = {
   },
   plugins: [
     AliasPlugin({
-      resolve: ["", ".js"],
+      resolve: ["", ".js", "/index.js"],
       "@": resolve("src")
     }),
     ESLintPlugin.eslint({

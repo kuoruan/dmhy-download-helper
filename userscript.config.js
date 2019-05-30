@@ -13,7 +13,8 @@ module.exports = {
   match: [
     "*://share.dmhy.org/",
     "*://share.dmhy.org/topics/list/*",
-    "*://share.dmhy.org/topics/list?*"
+    "*://share.dmhy.org/topics/list?*",
+    "*://share.dmhy.org/topics/view/*"
   ],
   require: ["https://cdn.jsdelivr.net/npm/vue@2.6.8/dist/vue.min.js"],
   grant: "GM_setClipboard",

@@ -44,7 +44,7 @@ export default {
     return {
       visible: false,
       opts: {
-        clean: false,
+        clean: true,
         separator: linebreak
       }
     };

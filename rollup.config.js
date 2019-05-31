@@ -13,6 +13,10 @@ const ServePlugin = require("rollup-plugin-serve");
 const ESLintPlugin = require("rollup-plugin-eslint");
 const TerserPlugin = require("rollup-plugin-terser");
 
+const PostCSSUrl = require("postcss-url");
+const PostCSSAutoprefixer = require("autoprefixer");
+const PostCSSNano = require("cssnano");
+
 const { config, createBanner } = require("./userscript");
 
 const isProduction = process.env.NODE_ENV === "production";
@@ -72,17 +76,29 @@ module.exports = {
     }),
     VuePlugin({
       css: true,
+      style: {
+        postcssPlugins: [
+          PostCSSUrl({
+            basePath: resolve("src"),
+            url: "inline"
+          }),
+          PostCSSAutoprefixer({}),
+          PostCSSNano({})
+        ]
+      },
       template: {
         isProduction: isProduction
       }
     }),
     StylusPlugin(),
     PostCSSPlugin({
-      include: "**/*.css"
+      include: "**/*.css",
+      extract: false,
+      config: true
     }),
     UrlPulgin({
       limit: 1024 * 1024,
-      include: ["**/*.ico"],
+      include: ["**/*.ico", "**/*.gif", "**/*.png"],
       exclude: "node_modules/**"
     }),
     ResolvePlugin(),

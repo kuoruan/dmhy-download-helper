@@ -28,7 +28,7 @@
 
 <script>
 import Popup from "@/components/Popup.vue";
-import { getDefaultLinebreak } from "@/utils";
+import { getDefaultLinebreak } from "@/utils/misc";
 
 export default {
   name: "LinksPopup",

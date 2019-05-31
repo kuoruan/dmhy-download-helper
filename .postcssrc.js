@@ -1,6 +1,6 @@
 module.exports = {
   "plugins": {
-    "postcss-url": {},
+    "postcss-url": {url: "inline"},
     "autoprefixer": {},
     "cssnano": {}
   }

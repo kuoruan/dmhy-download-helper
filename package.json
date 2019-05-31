@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/kuoruan/dmhy-download-helper#readme",
   "dependencies": {
+    "bytes": "^3.1.0",
     "vue": "^2.6.10"
   },
   "devDependencies": {

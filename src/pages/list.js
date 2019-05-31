@@ -3,7 +3,7 @@ import ToolBar from "@/components/ToolBar.vue";
 import CheckboxHeader from "@/components/CheckboxHeader.vue";
 import CheckboxItem from "@/components/CheckboxItem.vue";
 import LinksPopup from "@/components/LinksPopup.vue";
-import { magnetLinksWithOptions } from "@/utils";
+import { magnetLinksWithOptions } from "@/utils/misc";
 
 const HeaderVM = Vue.extend(CheckboxHeader);
 const ItemVM = Vue.extend(CheckboxItem);

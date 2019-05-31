@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { getDefaultLinebreak } from "@/utils";
+import { getDefaultLinebreak } from "@/utils/misc";
 export default {
   name: "ToolBar",
   props: {

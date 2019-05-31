@@ -1,4 +1,5 @@
 dependencies:
+  bytes: 3.1.0
   vue: 2.6.10
 devDependencies:
   '@babel/core': 7.4.5
@@ -1052,6 +1053,12 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-k0KL0aWZuBt2lrxrcASWDfwOLMnodeQjodT/1SxEQAXsHANgo6ZC/VEaSEHCXt7aSTZ4/4H5LKa+tBXmW7Vtvw==
+  /bytes/3.1.0:
+    dev: false
+    engines:
+      node: '>= 0.8'
+    resolution:
+      integrity: sha512-zauLjrfCG+xvoyaqLoV8bLVXXNGC4JqlxFCutSDWA6fJrTo2ZuvLYTqZ7aHBLZSMOopbzwv8f+wZcVzfVTI2Dg==
   /cache-base/1.0.1:
     dependencies:
       collection-visit: 1.0.0
@@ -4963,6 +4970,7 @@ specifiers:
   '@babel/preset-env': ^7.4.5
   '@vue/eslint-config-prettier': ^4.0.1
   autoprefixer: ^9.5.1
+  bytes: ^3.1.0
   cssnano: ^4.1.10
   eslint: ^5.16.0
   eslint-plugin-vue: ^5.2.2

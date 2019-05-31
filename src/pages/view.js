@@ -1,28 +1,37 @@
 import Vue from "vue";
+import Bytes from "bytes";
 import Tree from "@/components/Tree.vue";
-import { hashCode } from "@/utils";
+import { hashCode } from "@/utils/misc";
 
 const TreeVM = Vue.extend(Tree);
 
-function folderTreeFromElement(listElement) {
-  const fileNodeList = listElement.querySelectorAll("li");
-
+function folderTreeFromNodeList(fileNodeList) {
   const map = {};
   const list = [];
 
   for (let i = 0, len = fileNodeList.length; i < len; i++) {
     const fileNode = fileNodeList[i];
+
     const fileSizeNode = fileNode.querySelector(".bt_file_size");
-    let fileSize;
+    const nodeText = fileNode.innerText;
+
+    let fileSizeStr;
 
     if (fileSizeNode) {
-      fileSize = fileSizeNode.innerText.trim();
+      fileSizeStr = fileSizeNode.innerText.trim();
     }
 
-    const nodeText = fileNode.innerText;
     let filePath;
-    if (fileSize) {
-      filePath = nodeText.substring(0, nodeText.indexOf(fileSize)).trim();
+    let fileBytes = 0;
+
+    if (fileSizeStr) {
+      filePath = nodeText.substring(0, nodeText.indexOf(fileSizeStr)).trim();
+      const bytes = fileSizeStr.replace(/(\d+)bytes?/i, "$1");
+      if (!isNaN(+bytes)) {
+        fileBytes = +bytes;
+      } else {
+        fileBytes = Bytes(fileSizeStr);
+      }
     } else {
       filePath = nodeText.trim();
     }
@@ -46,7 +55,7 @@ function folderTreeFromElement(listElement) {
           parentKey: parentKey,
           name: fileName,
           level: level,
-          size: level === sLen ? fileSize : null,
+          size: level === sLen ? fileBytes : 0,
           children: level === sLen ? null : []
         };
         map[key] = file;
@@ -72,19 +81,23 @@ function folderTreeFromElement(listElement) {
 }
 
 export function mountFileListElement(el, onError) {
-  const folders = folderTreeFromElement(el);
+  const fileListNode = el.querySelector("ul");
+  const fileItemNodeList = el.querySelectorAll("ul > li");
 
-  if (folders.length <= 0) {
+  if (!fileListNode || fileItemNodeList.length <= 0) {
     onError();
     return;
   }
 
   const tree = new TreeVM({
     propsData: {
-      folders: folders,
-      onError: onError
+      folders: folderTreeFromNodeList(fileItemNodeList)
     }
   });
 
-  tree.$mount(el);
+  tree.$on("error", function() {
+    onError(tree);
+  });
+
+  tree.$mount(fileListNode);
 }

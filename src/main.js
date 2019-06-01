@@ -14,19 +14,15 @@ Object.defineProperty(Vue.prototype, "$toast", { value: toast });
 
 const topicListEl = document.querySelector("#topic_list");
 if (topicListEl) {
-  mountListElement(topicListEl, function(vm) {
-    if (vm) {
-      vm.$destroy();
-    }
-  });
+  mountListElement(topicListEl);
 }
 
 const fileListEl = document.querySelector("#resource-tabs .file_list");
-
 if (fileListEl) {
-  mountFileListElement(fileListEl, function(vm) {
-    if (vm) {
-      vm.$destroy();
-    }
-  });
+  let title = "";
+  const titleEl = document.querySelector(".topic-title h3");
+  if (titleEl) {
+    title = titleEl.innerText.trim();
+  }
+  mountFileListElement(fileListEl, title);
 }

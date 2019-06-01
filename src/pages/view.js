@@ -25,15 +25,19 @@ function folderTreeFromNodeList(fileNodeList) {
     let fileBytes = 0;
 
     if (fileSizeStr) {
-      filePath = nodeText.substring(0, nodeText.indexOf(fileSizeStr)).trim();
       const bytes = fileSizeStr.replace(/(\d+)bytes?/i, "$1");
       if (!isNaN(+bytes)) {
         fileBytes = +bytes;
       } else {
         fileBytes = Bytes(fileSizeStr);
       }
+      filePath = nodeText.substring(0, nodeText.indexOf(fileSizeStr)).trim();
     } else {
       filePath = nodeText.trim();
+    }
+
+    if (!filePath) {
+      filePath = `${i + 1}`;
     }
 
     let slice = filePath.split("/");
@@ -80,23 +84,34 @@ function folderTreeFromNodeList(fileNodeList) {
   return root;
 }
 
-export function mountFileListElement(el, onError) {
+export function mountFileListElement(el, title) {
   const fileListNode = el.querySelector("ul");
   const fileItemNodeList = el.querySelectorAll("ul > li");
 
   if (!fileListNode || fileItemNodeList.length <= 0) {
-    onError();
+    return;
+  }
+
+  const folders = folderTreeFromNodeList(fileItemNodeList);
+
+  if (folders.length <= 0) {
     return;
   }
 
   const tree = new TreeVM({
     propsData: {
-      folders: folderTreeFromNodeList(fileItemNodeList)
+      folders:
+        (folders.length > 1 || folders[0].size) && title
+          ? [
+              {
+                key: 0,
+                parentKey: -1,
+                name: title,
+                children: folders
+              }
+            ]
+          : folders
     }
-  });
-
-  tree.$on("error", function() {
-    onError(tree);
   });
 
   tree.$mount(fileListNode);

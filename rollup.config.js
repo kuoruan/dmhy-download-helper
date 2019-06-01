@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const chalk = require("chalk");
 
 const AliasPlugin = require("rollup-plugin-alias");
 const ResolvePlugin = require("rollup-plugin-node-resolve");
@@ -34,7 +35,7 @@ if (fs.existsSync(buildNumberFile)) {
 function writeNewBuildNumber(number) {
   fs.writeFile(buildNumberFile, number, function(err) {
     if (!err) {
-      console.log(`Build Number Set to ${number}`);
+      console.log(chalk.keyword("orange")(`build number set to ${number}`));
     }
   });
 }
@@ -138,6 +139,7 @@ module.exports = {
       ? []
       : [
           ServePlugin({
+            port: 10010,
             contentBase: path.join(__dirname, "dist")
           })
         ])

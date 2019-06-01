@@ -11,7 +11,7 @@ const ItemVM = Vue.extend(CheckboxItem);
 const ToolBarVM = Vue.extend(ToolBar);
 const LinksPopupVM = Vue.extend(LinksPopup);
 
-export function mountListElement(el, onError) {
+export function mountListElement(el) {
   const list = new Vue({
     data() {
       return {
@@ -32,7 +32,6 @@ export function mountListElement(el, onError) {
           !tableContainer || tableContainer.className.indexOf("table") < 0)
         ) {
           // Not in list page or list not in table container .table
-          onError(this);
           return;
         }
 

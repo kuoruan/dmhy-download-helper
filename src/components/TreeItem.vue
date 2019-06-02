@@ -27,6 +27,24 @@
 <script>
 import Bytes from "bytes";
 
+const Videos = ["mp4", "rmvb", "avi", "mkv", "wmv", "flv", "ts"];
+const Audios = ["mp3", "ogg", "wma", "wav", "aac", "flac", "mka", "cue"];
+const Subtitles = ["sub", "idx", "sup", "sst", "srt", "ssa", "ass", "tts"];
+const Images = ["jpg", "jpeg", "png", "gif", "bmp", "pdf", "webp"];
+const Archives = ["rar", "rar5", "zip", "7z", "tar", "gz", "xz"];
+const Documents = [
+  "txt",
+  "log",
+  "md",
+  "doc",
+  "docx",
+  "xls",
+  "xlsx",
+  "ppt",
+  "pptx",
+  "md5"
+];
+
 export default {
   name: "TreeItem",
   props: {
@@ -97,51 +115,22 @@ export default {
       if (this.isFolder) {
         return this.isOpen ? "folder-open" : "folder-close";
       }
-      const ext = this.name.split(".").pop();
-      switch (ext.toLowerCase()) {
-        case "mp4":
-        case "rmvb":
-        case "avi":
-        case "mkv":
-        case "wmv":
-        case "flv":
-        case "ts":
+      const ext = this.name
+        .split(".")
+        .pop()
+        .toLowerCase();
+      switch (true) {
+        case Videos.indexOf(ext) > -1:
           return "video";
-        case "jpg":
-        case "jpeg":
-        case "png":
-        case "gif":
-        case "bmp":
-        case "pdf":
-        case "webp":
+        case Images.indexOf(ext) > -1:
           return "image";
-        case "rar":
-        case "zip":
-        case "7z":
-        case "tar":
-        case "gz":
-        case "xz":
+        case Archives.indexOf(ext) > -1:
           return "archive";
-        case "mp3":
-        case "ogg":
-        case "wma":
-        case "wav":
-        case "aac":
-        case "flac":
-        case "mka":
-        case "cue":
+        case Audios.indexOf(ext) > -1:
           return "audio";
-        case "txt":
-        case "log":
-        case "md":
-          return "text";
-        case "sub":
-        case "idx":
-        case "sst":
-        case "srt":
-        case "ssa":
-        case "ass":
-        case "tts":
+        case Documents.indexOf(ext) > -1:
+          return "document";
+        case Subtitles.indexOf(ext) > -1:
           return "subtitle";
         default:
           return "unknown";
@@ -224,7 +213,7 @@ li.tree-item
       background-image: url("/assets/img/folder-closed.gif")
     &.folder-open:before
       background-image: url("/assets/img/folder.gif")
-    &.text:before
+    &.document:before
       background-image: url("/assets/img/file.gif")
     &.video:before
       background-image: url("https://share.dmhy.org/images/icon/mkv.gif")

@@ -37,7 +37,7 @@ function folderTreeFromNodeList(fileNodeList) {
     }
 
     if (!filePath) {
-      filePath = `${i + 1}`;
+      filePath = `unknown - ${i + 1}`;
     }
 
     let slice = filePath.split("/");

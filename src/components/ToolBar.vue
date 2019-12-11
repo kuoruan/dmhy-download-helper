@@ -54,25 +54,32 @@ export default {
 
 <style lang="stylus" scoped>
 .tool-bar
+  display: none
   background-color: #247
   color: white
-  display: none
+
   &.top
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid white
+
   &.bottom
-    border-top: 1px solid white;
+    border-top: 1px solid white
+
   &.visible
     display: block
+
 .wrapper
   display: flex
-  height: auto
   flex-direction: row
   align-items: center
+  height: auto
+
   label
     margin-left: 10px
+
   .title
     padding: 8px 15px
     border-right: 2px solid white
+
   .checkbox
     width: 14px
     height: 14px
@@ -80,11 +87,12 @@ export default {
 
   .btn-wrapper
     margin-left: 10px
+
     .btn
-      padding: 2px 5px
-      color: #247
-      background-color: white
-      border: 1px solid #247
       margin: 0 5px
+      padding: 2px 5px
       outline: none
+      border: 1px solid #247
+      background-color: white
+      color: #247
 </style>

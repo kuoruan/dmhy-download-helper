@@ -36,18 +36,20 @@ export default {
 
 <style lang="stylus" scoped>
 .toast
+  position: fixed
+  bottom: 30px
+  left: 50%
+  z-index: 99
   display: none
   padding: 10px 20px
-  position: fixed
-  left: 50%
-  bottom: 30px
-  z-index: 99
   border-radius: 2px
   background-color: #333
   transform: translateX(-50%)
+
   &.show
     display: block
     animation: fadein 0.5s, fadeout 0.5s 2.5s
+
   .text
     color: #fff
     font-size: 14px
@@ -57,13 +59,16 @@ export default {
   from
     bottom: 0
     opacity: 0
+
   to
     bottom: 30px
     opacity: 1
+
 @keyframes fadeout
   from
     bottom: 30px
     opacity: 1
+
   to
     bottom: 0
     opacity: 0

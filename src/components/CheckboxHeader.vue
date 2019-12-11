@@ -21,9 +21,11 @@ export default {
 <style lang="stylus" scoped>
 .header
   cursor: default
+
   .select-all
     width: 14px
     height: 14px
+
   .title
     margin-left: 5px
 </style>

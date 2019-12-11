@@ -164,80 +164,102 @@ export default {
 li.tree-item
   margin: 0
   padding: 2px 0 2px 16px
-  background: url("/assets/img/treeview-default-line.gif") 0 0 no-repeat
+  background: url('/assets/img/treeview-default-line.gif') 0 0 no-repeat
+
   &.collection
     background-position: 0 -176px
+
   &.last
     background-position: 0 -1766px
+
   .hitarea
-    background: url("/assets/img/treeview-default.gif") -48px -47px no-repeat
-    height: 16px
-    width: 16px
-    margin-left: -16px
     float: left
+    margin-left: -16px
+    width: 16px
+    height: 16px
+    background: url('/assets/img/treeview-default.gif') -48px -47px no-repeat
     cursor: pointer
+
     &.last-hitarea
       background-color: #fff
       background-position: -32px -69px
+
     &.collapsable-hitarea
       background-position: -16px -91px
+
       &.last-hitarea
         background-position: 0 -113px
+
   .title
-    padding-left: 18px
-    line-height: 16px
-    height: 16px
     position: relative
     display: flex
     flex-direction: row
     box-sizing: border-box
+    padding-left: 18px
     width: 100%
+    height: 16px
+    line-height: 16px
+
     h5
       flex: 1 1 0
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap
       font-weight: normal
       font-size: 12px
-      overflow: hidden
-      white-space: nowrap
-      text-overflow: ellipsis
+
     &:before
       position: absolute
-      left: 0
       top: 0
-      content: ""
+      left: 0
       display: block
       width: 16px
       height: 16px
       background-color: #fff
       background-repeat: no-repeat
+      content: ''
+
     &.folder-close:before
-      background-image: url("/assets/img/folder-closed.gif")
+      background-image: url('/assets/img/folder-closed.gif')
+
     &.folder-open:before
-      background-image: url("/assets/img/folder.gif")
+      background-image: url('/assets/img/folder.gif')
+
     &.document:before
-      background-image: url("/assets/img/file.gif")
+      background-image: url('/assets/img/file.gif')
+
     &.video:before
-      background-image: url("https://share.dmhy.org/images/icon/mkv.gif")
+      background-image: url('https://share.dmhy.org/images/icon/mkv.gif')
+
     &.audio:before
-      background-image: url("https://share.dmhy.org/images/icon/mp3.gif")
+      background-image: url('https://share.dmhy.org/images/icon/mp3.gif')
+
     &.image:before
-      background-image: url("https://share.dmhy.org/images/icon/jpg.gif")
+      background-image: url('https://share.dmhy.org/images/icon/jpg.gif')
+
     &.archive:before
-      background-image: url("https://share.dmhy.org/images/icon/rar.gif")
+      background-image: url('https://share.dmhy.org/images/icon/rar.gif')
+
     &.subtitle:before
-      background-image: url("https://share.dmhy.org/images/icon/txt.gif")
+      background-image: url('https://share.dmhy.org/images/icon/txt.gif')
+
     &.unknown:before
-      background-image: url("https://share.dmhy.org/images/icon/unknown.gif")
+      background-image: url('https://share.dmhy.org/images/icon/unknown.gif')
+
     .size
       display: block
       flex: 0
       color: grey
       white-space: nowrap
+
   &:nth-child(even) > .title
     background-color: #cdf
+
   &::nth-child(odd) > .title
     background-color: #fff
+
   ul
-    padding: 0
     margin: 4px 0 0
+    padding: 0
     list-style: none
 </style>

@@ -2,11 +2,11 @@ const fs = require("fs");
 const path = require("path");
 const chalk = require("chalk");
 
-const AliasPlugin = require("rollup-plugin-alias");
+const AliasPlugin = require("@rollup/plugin-alias");
 const ResolvePlugin = require("rollup-plugin-node-resolve");
 const CommonJSPlugin = require("rollup-plugin-commonjs");
 const BabelPlugin = require("rollup-plugin-babel");
-const UrlPulgin = require("rollup-plugin-url");
+const UrlPulgin = require("@rollup/plugin-url");
 const PostCSSPlugin = require("rollup-plugin-postcss");
 const StylusPlugin = require("rollup-plugin-stylus-compiler");
 const VuePlugin = require("rollup-plugin-vue");
@@ -50,7 +50,7 @@ module.exports = {
   },
   external: ["vue"],
   output: {
-    dir: path.join(__dirname, "dist"),
+    dir: resolve("dist"),
     entryFileNames: "[name].user.js",
     format: "iife",
     banner: function() {
@@ -67,11 +67,12 @@ module.exports = {
   plugins: [
     AliasPlugin({
       resolve: ["", ".js", "/index.js"],
-      "@": resolve("src")
+      entries: {
+        "@": resolve("src")
+      }
     }),
     ESLintPlugin.eslint({
       include: ["src/**/*.js", "src/**/*.vue"],
-      exclude: "node_modules/**",
       throwOnWarning: true,
       throwOnError: true
     }),

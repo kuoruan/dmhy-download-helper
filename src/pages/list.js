@@ -22,6 +22,19 @@ export function mountListElement(el) {
         toolbars: []
       };
     },
+    computed: {
+      links() {
+        return this.selected.map(item => item.magnet).filter(m => !!m);
+      }
+    },
+    watch: {
+      links(val) {
+        const isEmpty = !val || val.length <= 0;
+        this.toolbars.forEach(t => {
+          t.visible = !isEmpty;
+        });
+      }
+    },
     mounted() {
       this.$nextTick(function() {
         const table = this.$el;
@@ -81,19 +94,6 @@ export function mountListElement(el) {
       this.all.splice(0, this.all.length);
       this.selected.splice(0, this.selected.length);
       this.toolbars.splice(0, this.toolbars.length);
-    },
-    computed: {
-      links() {
-        return this.selected.map(item => item.magnet).filter(m => !!m);
-      }
-    },
-    watch: {
-      links(val) {
-        const isEmpty = !val || val.length <= 0;
-        this.toolbars.forEach(t => {
-          t.visible = !isEmpty;
-        });
-      }
     },
     methods: {
       initToolBars(tableContainer) {

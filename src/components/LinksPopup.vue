@@ -61,14 +61,6 @@ export default {
       content: ""
     };
   },
-  created() {
-    this.resetContent();
-  },
-  watch: {
-    links() {
-      this.resetContent();
-    }
-  },
   computed: {
     textStyle() {
       if (
@@ -86,6 +78,14 @@ export default {
         };
       }
     }
+  },
+  watch: {
+    links() {
+      this.resetContent();
+    }
+  },
+  created() {
+    this.resetContent();
   },
   methods: {
     resetContent() {
@@ -142,47 +142,54 @@ export default {
 <style lang="stylus" scoped>
 .btn
   padding: 2px 5px
-  color: #247
-  background-color: white
-  border: 1px solid #247
   outline: none
+  border: 1px solid #247
+  background-color: white
+  color: #247
+
 .popup-header
-  background-color: #247
-  padding: 5px
   display: flex
   flex-direction: row
   align-items: center
+  padding: 5px
+  background-color: #247
+
   h4
-    font-size: 14px
+    flex: 1 1 0
+    color: #fff
     text-align: left
     font-weight: normal
+    font-size: 14px
     line-height: 1.5
-    color: #fff
-    flex: 1 1 0
+
 .popup-body
   padding: 5px
   background-color: #fff
+
   .links-box
+    overflow: auto
+    padding: 4px 8px
+    border: 1px solid #247
     background-color: #eef
     background-image: none
-    border: 1px solid #247
     color: #333
-    padding: 4px 8px
     font-size: 12px
     line-height: 1.5
-    overflow: auto
     resize: none
     cursor: text
+
 .popup-footer
-  padding: 5px
-  background-color: #cdf
   display: flex
   flex-direction: row
   align-items: center
+  padding: 5px
+  background-color: #cdf
+
   .btn:not(:first-child)
     margin-left: 10px
+
   p
-    text-align: right
     flex: 1 1 0
     margin: 0
+    text-align: right
 </style>

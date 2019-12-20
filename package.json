@@ -23,7 +23,7 @@
     "vue": "^2.6.11"
   },
   "devDependencies": {
-    "@babel/core": "^7.7.5",
+    "@babel/core": "^7.7.7",
     "@babel/preset-env": "^7.7.7",
     "@rollup/plugin-alias": "^2.2.0",
     "@rollup/plugin-url": "^4.0.0",

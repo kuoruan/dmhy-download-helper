@@ -34,7 +34,7 @@
     "cssnano": "^4.1.10",
     "eslint": "^6.8.0",
     "eslint-plugin-prettier": "^3.1.2",
-    "eslint-plugin-vue": "^6.1.1",
+    "eslint-plugin-vue": "^6.1.2",
     "postcss-url": "^8.0.0",
     "prettier": "^1.19.1",
     "pug": "^2.0.4",

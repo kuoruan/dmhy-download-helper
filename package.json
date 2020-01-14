@@ -19,7 +19,7 @@
   "homepage": "https://github.com/kuoruan/dmhy-download-helper#readme",
   "dependencies": {
     "bytes": "^3.1.0",
-    "core-js": "^3.6.3",
+    "core-js": "^3.6.4",
     "vue": "^2.6.11"
   },
   "devDependencies": {

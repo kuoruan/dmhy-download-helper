@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.8.3",
-    "@babel/preset-env": "^7.8.2",
+    "@babel/preset-env": "^7.8.3",
     "@rollup/plugin-alias": "^3.0.0",
     "@rollup/plugin-url": "^4.0.1",
     "@vue/eslint-config-prettier": "^6.0.0",

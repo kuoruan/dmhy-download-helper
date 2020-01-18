@@ -3,8 +3,8 @@ const path = require("path");
 const chalk = require("chalk");
 
 const AliasPlugin = require("@rollup/plugin-alias");
-const ResolvePlugin = require("rollup-plugin-node-resolve");
-const CommonJSPlugin = require("rollup-plugin-commonjs");
+const ResolvePlugin = require("@rollup/plugin-node-resolve");
+const CommonJSPlugin = require("@rollup/plugin-commonjs");
 const BabelPlugin = require("rollup-plugin-babel");
 const UrlPulgin = require("@rollup/plugin-url");
 const PostCSSPlugin = require("rollup-plugin-postcss");
@@ -66,7 +66,9 @@ module.exports = {
   },
   plugins: [
     AliasPlugin({
-      resolve: ["", ".js", "/index.js"],
+      customResolver: ResolvePlugin({
+        extensions: [".js"]
+      }),
       entries: {
         "@": resolve("src")
       }

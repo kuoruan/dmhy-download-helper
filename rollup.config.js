@@ -86,8 +86,8 @@ module.exports = {
             basePath: resolve("src"),
             url: "inline"
           }),
-          PostCSSAutoprefixer({}),
-          PostCSSNano({})
+          PostCSSAutoprefixer(),
+          PostCSSNano()
         ]
       },
       template: {
@@ -108,7 +108,7 @@ module.exports = {
     ResolvePlugin(),
     CommonJSPlugin(),
     BabelPlugin({
-      exclude: "node_modules/**"
+      exclude: ["node_modules/core-js/**"]
     }),
     TerserPlugin.terser({
       sourcemap: false,

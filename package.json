@@ -26,7 +26,7 @@
     "@babel/core": "^7.8.4",
     "@babel/preset-env": "^7.8.4",
     "@rollup/plugin-alias": "^3.0.1",
-    "@rollup/plugin-commonjs": "^11.0.1",
+    "@rollup/plugin-commonjs": "^11.0.2",
     "@rollup/plugin-node-resolve": "^7.1.1",
     "@rollup/plugin-url": "^4.0.2",
     "@vue/eslint-config-prettier": "^6.0.0",

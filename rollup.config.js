@@ -102,7 +102,9 @@ module.exports = function() {
       }),
       ResolvePlugin(),
       CommonJSPlugin(),
-      BabelPlugin(),
+      BabelPlugin({
+        extensions: [".js", ".jsx", ".es6", ".es", ".mjs", ".vue"]
+      }),
       TerserPlugin.terser({
         sourcemap: false,
         mangle: false,

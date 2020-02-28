@@ -16,7 +16,7 @@ module.exports = {
     "*://share.dmhy.org/topics/list?*",
     "*://share.dmhy.org/topics/view/*"
   ],
-  require: ["https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js"],
+  require: ["https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js"],
   grant: "GM_setClipboard",
   source: "https://github.com/kuoruan/dmhy-download-helper.git",
   license: packageConfig.license,

@@ -1,8 +1,9 @@
-import Vue from "vue";
 import "@/assets/css/common.styl";
+
 import Toast from "@/components/Toast.vue";
-import { mountListElement } from "@/pages/list";
+import Vue from "vue";
 import { mountFileListElement } from "@/pages/view";
+import { mountListElement } from "@/pages/list";
 
 // Init toast item
 const ToastVM = Vue.extend(Toast);

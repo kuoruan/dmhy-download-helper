@@ -1,8 +1,8 @@
-import Vue from "vue";
-import ToolBar from "@/components/ToolBar.vue";
 import CheckboxHeader from "@/components/CheckboxHeader.vue";
 import CheckboxItem from "@/components/CheckboxItem.vue";
 import LinksPopup from "@/components/LinksPopup.vue";
+import ToolBar from "@/components/ToolBar.vue";
+import Vue from "vue";
 import { magnetLinksWithOptions } from "@/utils/misc";
 
 const HeaderVM = Vue.extend(CheckboxHeader);

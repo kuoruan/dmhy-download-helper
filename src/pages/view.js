@@ -1,6 +1,6 @@
-import Vue from "vue";
 import Bytes from "bytes";
 import Tree from "@/components/Tree.vue";
+import Vue from "vue";
 import { hashCode } from "@/utils/misc";
 
 const TreeVM = Vue.extend(Tree);

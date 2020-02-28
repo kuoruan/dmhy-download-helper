@@ -56,6 +56,7 @@ module.exports.createBanner = function(isDev, buildNumber) {
   }
 
   headers.push("// ==/UserScript==");
+  headers.push("");
 
   return headers.join("\n");
 };

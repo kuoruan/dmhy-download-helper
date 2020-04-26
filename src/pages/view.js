@@ -60,7 +60,7 @@ function folderTreeFromNodeList(fileNodeList) {
           name: fileName,
           level: level,
           size: level === sLen ? fileBytes : 0,
-          children: level === sLen ? null : []
+          children: level === sLen ? null : [],
         };
         map[key] = file;
         list.push(file);
@@ -107,11 +107,11 @@ export function mountFileListElement(el, title) {
                 key: 0,
                 parentKey: -1,
                 name: title,
-                children: folders
-              }
+                children: folders,
+              },
             ]
-          : folders
-    }
+          : folders,
+    },
   });
 
   tree.$mount(fileListNode);

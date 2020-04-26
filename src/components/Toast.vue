@@ -10,7 +10,7 @@ export default {
     return {
       text: "",
       show: false,
-      timer: 0
+      timer: 0,
     };
   },
   methods: {
@@ -24,13 +24,13 @@ export default {
       this.show = true;
 
       const _self = this;
-      this.timer = window.setTimeout(function() {
+      this.timer = window.setTimeout(function () {
         _self.show = false;
         _self.text = "";
         _self.timer = 0;
       }, 3000);
-    }
-  }
+    },
+  },
 };
 </script>
 

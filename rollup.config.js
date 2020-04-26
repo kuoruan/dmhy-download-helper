@@ -25,7 +25,7 @@ const buildNumberFile = path.resolve(__dirname, "BUILD");
 
 // Write new build number to file.
 function writeNewBuildNumber(number) {
-  fs.writeFile(buildNumberFile, number, function(err) {
+  fs.writeFile(buildNumberFile, number, function (err) {
     if (!err) {
       console.log(chalk.keyword("orange")(`build number set to ${number}`));
     }
@@ -36,7 +36,7 @@ function resolve(...paths) {
   return path.resolve(__dirname, ...paths);
 }
 
-module.exports = function() {
+module.exports = function () {
   let buildNumber = 0;
 
   // Read build number from local file.
@@ -51,7 +51,7 @@ module.exports = function() {
 
   return {
     input: {
-      [config.pkgName]: resolve("src", "main.js")
+      [config.pkgName]: resolve("src", "main.js"),
     },
     external: ["vue"],
     output: {
@@ -59,19 +59,19 @@ module.exports = function() {
       entryFileNames: "[name].user.js",
       format: "iife",
       globals: {
-        vue: "Vue"
-      }
+        vue: "Vue",
+      },
     },
     plugins: [
       AliasPlugin({
         entries: {
-          "@": resolve("src")
-        }
+          "@": resolve("src"),
+        },
       }),
       ESLintPlugin.eslint({
         include: ["src/**/*.js", "src/**/*.vue"],
         throwOnWarning: true,
-        throwOnError: true
+        throwOnError: true,
       }),
       VuePlugin({
         css: true,
@@ -79,31 +79,31 @@ module.exports = function() {
           postcssPlugins: [
             PostCSSUrl({
               basePath: resolve("src"),
-              url: "inline"
+              url: "inline",
             }),
             PostCSSAutoprefixer(),
-            PostCSSNano()
-          ]
+            PostCSSNano(),
+          ],
         },
         template: {
-          isProduction: isProduction
-        }
+          isProduction: isProduction,
+        },
       }),
       StylusPlugin(),
       PostCSSPlugin({
         include: "**/*.css",
         extract: false,
-        config: true
+        config: true,
       }),
       UrlPulgin({
         limit: 1024 * 1024,
         include: ["**/*.ico", "**/*.gif", "**/*.png"],
-        exclude: "node_modules/**"
+        exclude: "node_modules/**",
       }),
       ResolvePlugin(),
       CommonJSPlugin(),
       BabelPlugin({
-        extensions: [".js", ".jsx", ".es6", ".es", ".mjs", ".vue"]
+        extensions: [".js", ".jsx", ".es6", ".es", ".mjs", ".vue"],
       }),
       TerserPlugin.terser({
         sourcemap: false,
@@ -119,7 +119,7 @@ module.exports = function() {
           sequences: false,
           keep_classnames: true,
           keep_fargs: true,
-          keep_fnames: true
+          keep_fnames: true,
         },
         output: {
           comments: false,
@@ -128,21 +128,21 @@ module.exports = function() {
           indent_level: 2,
           max_line_len: 70,
           semicolons: true,
-          preamble: createBanner(!isProduction, buildNumber)
-        }
+          preamble: createBanner(!isProduction, buildNumber),
+        },
       }),
       ...(isProduction
         ? []
         : [
             ServePlugin({
               port: 10010,
-              contentBase: path.join(__dirname, "dist")
-            })
-          ])
+              contentBase: path.join(__dirname, "dist"),
+            }),
+          ]),
     ],
     watch: {
       include: "src/**",
-      exclude: "node_modules/**"
-    }
+      exclude: "node_modules/**",
+    },
   };
 };

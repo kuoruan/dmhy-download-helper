@@ -4,7 +4,7 @@ export function magnetLinksWithOptions(magnetLinks, opts) {
   }
 
   if (opts.clean) {
-    return magnetLinks.map(l => l.substring(0, l.indexOf("&")));
+    return magnetLinks.map((l) => l.substring(0, l.indexOf("&")));
   }
   return [...magnetLinks];
 }

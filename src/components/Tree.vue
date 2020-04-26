@@ -15,15 +15,15 @@ import TreeItem from "@/components/TreeItem.vue";
 export default {
   name: "Tree",
   components: {
-    TreeItem
+    TreeItem,
   },
   props: {
     folders: {
       type: Array,
       default() {
         return [];
-      }
-    }
-  }
+      },
+    },
+  },
 };
 </script>

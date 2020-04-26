@@ -12,9 +12,9 @@ export default {
   name: "CheckboxHeader",
   data() {
     return {
-      checked: false
+      checked: false,
     };
-  }
+  },
 };
 </script>
 

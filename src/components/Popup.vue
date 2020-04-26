@@ -18,16 +18,16 @@ export default {
   props: {
     zIndex: {
       type: Number,
-      default: 10
+      default: 10,
     },
     middle: {
       type: Boolean,
-      default: false
+      default: false,
     },
     marginTop: {
       type: Number,
-      default: 0
-    }
+      default: 0,
+    },
   },
   methods: {
     onScroll(evt) {
@@ -49,8 +49,8 @@ export default {
       if (!isAutoOrScroll || scroll) {
         evt.preventDefault();
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

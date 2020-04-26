@@ -42,7 +42,7 @@ const Documents = [
   "xlsx",
   "ppt",
   "pptx",
-  "md5"
+  "md5",
 ];
 
 export default {
@@ -50,42 +50,42 @@ export default {
   props: {
     key: {
       type: Number,
-      default: -1
+      default: -1,
     },
     parentKey: {
       type: Number,
-      default: -1
+      default: -1,
     },
     name: {
       type: String,
-      default: ""
+      default: "",
     },
     level: {
       type: Number,
-      default: 1
+      default: 1,
     },
     size: {
       type: Number,
-      default: 0
+      default: 0,
     },
     children: {
       type: Array,
       default() {
         return [];
-      }
+      },
     },
     isLast: {
       type: Boolean,
-      default: false
+      default: false,
     },
     expand: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
-      isOpen: this.expand
+      isOpen: this.expand,
     };
   },
   computed: {
@@ -100,7 +100,7 @@ export default {
       } else {
         const sizeList = this.sizeListWithItem({
           size: this.size,
-          children: this.children
+          children: this.children,
         });
 
         sum = sizeList.reduce((a, b) => a + b, 0);
@@ -108,17 +108,14 @@ export default {
 
       return Bytes(sum, {
         decimalPlaces: 2,
-        unitSeparator: " "
+        unitSeparator: " ",
       });
     },
     icon() {
       if (this.isFolder) {
         return this.isOpen ? "folder-open" : "folder-close";
       }
-      const ext = this.name
-        .split(".")
-        .pop()
-        .toLowerCase();
+      const ext = this.name.split(".").pop().toLowerCase();
       switch (true) {
         case Videos.indexOf(ext) > -1:
           return "video";
@@ -135,7 +132,7 @@ export default {
         default:
           return "unknown";
       }
-    }
+    },
   },
   methods: {
     toggle() {
@@ -155,8 +152,8 @@ export default {
       }
 
       return list;
-    }
-  }
+    },
+  },
 };
 </script>
 

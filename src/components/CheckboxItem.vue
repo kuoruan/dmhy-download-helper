@@ -14,18 +14,18 @@ export default {
   props: {
     index: {
       type: Number,
-      default: 0
+      default: 0,
     },
     magnet: {
       type: String,
-      default: ""
-    }
+      default: "",
+    },
   },
   data() {
     return {
-      checked: false
+      checked: false,
     };
-  }
+  },
 };
 </script>
 

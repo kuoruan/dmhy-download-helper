@@ -36,8 +36,8 @@ export default {
   props: {
     position: {
       type: String,
-      default: "top"
-    }
+      default: "top",
+    },
   },
   data() {
     let linebreak = getDefaultLinebreak();
@@ -45,10 +45,10 @@ export default {
       visible: false,
       opts: {
         clean: true,
-        separator: linebreak
-      }
+        separator: linebreak,
+      },
     };
-  }
+  },
 };
 </script>
 

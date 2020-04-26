@@ -33,32 +33,32 @@ import { getDefaultLinebreak } from "@/utils/misc";
 export default {
   name: "LinksPopup",
   components: {
-    Popup
+    Popup,
   },
   props: {
     zIndex: {
       type: Number,
-      default: 10
+      default: 10,
     },
     links: {
       type: Array,
       default() {
         return [];
-      }
+      },
     },
     options: {
       type: Object,
       default() {
         const linebreak = getDefaultLinebreak();
         return {
-          separator: linebreak
+          separator: linebreak,
         };
-      }
-    }
+      },
+    },
   },
   data() {
     return {
-      content: ""
+      content: "",
     };
   },
   computed: {
@@ -69,20 +69,20 @@ export default {
       ) {
         return {
           "white-space": "nowrap",
-          "word-wrap": "normal"
+          "word-wrap": "normal",
         };
       } else {
         return {
           "white-space": "pre-wrap",
-          "word-wrap": "break-all"
+          "word-wrap": "break-all",
         };
       }
-    }
+    },
   },
   watch: {
     links() {
       this.resetContent();
-    }
+    },
   },
   created() {
     this.resetContent();
@@ -134,8 +134,8 @@ export default {
       } else {
         this.$toast.display("获取文本框失败");
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

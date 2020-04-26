@@ -19,24 +19,24 @@ export function mountListElement(el) {
         all: [],
         selected: [],
         popupIndex: 10,
-        toolbars: []
+        toolbars: [],
       };
     },
     computed: {
       links() {
-        return this.selected.map(item => item.magnet).filter(m => !!m);
-      }
+        return this.selected.map((item) => item.magnet).filter((m) => !!m);
+      },
     },
     watch: {
       links(val) {
         const isEmpty = !val || val.length <= 0;
-        this.toolbars.forEach(t => {
+        this.toolbars.forEach((t) => {
           t.visible = !isEmpty;
         });
-      }
+      },
     },
     mounted() {
-      this.$nextTick(function() {
+      this.$nextTick(function () {
         const table = this.$el;
         let tableContainer;
         if (
@@ -83,10 +83,10 @@ export function mountListElement(el) {
         this.header = null;
       }
 
-      this.all.forEach(item => {
+      this.all.forEach((item) => {
         item.$off("change");
       });
-      this.toolbars.forEach(t => {
+      this.toolbars.forEach((t) => {
         t.$off("copy");
         t.$off("show");
       });
@@ -99,8 +99,8 @@ export function mountListElement(el) {
       initToolBars(tableContainer) {
         const headerToolbar = new ToolBarVM({
           propsData: {
-            position: "top"
-          }
+            position: "top",
+          },
         }).$mount();
 
         headerToolbar.$on("copy", this.onCopyLinks);
@@ -108,8 +108,8 @@ export function mountListElement(el) {
 
         const bottomToobar = new ToolBarVM({
           propsData: {
-            position: "bottom"
-          }
+            position: "bottom",
+          },
         }).$mount();
         bottomToobar.$on("copy", this.onCopyLinks);
         bottomToobar.$on("show", this.onShowLinks);
@@ -136,18 +136,18 @@ export function mountListElement(el) {
         const td = new ItemVM({
           propsData: {
             index: index,
-            magnet: linkDOM ? linkDOM.href : ""
-          }
+            magnet: linkDOM ? linkDOM.href : "",
+          },
         }).$mount(tdDOM);
 
         const _self = this;
-        td.$on("change", function(checked) {
+        td.$on("change", function (checked) {
           _self.onItemSelectChange(td, checked);
         });
         this.all.push(td);
       },
       onSelectAllChange(checked) {
-        this.all.forEach(function(item) {
+        this.all.forEach(function (item) {
           item.checked = checked;
         });
         if (checked) {
@@ -188,10 +188,10 @@ export function mountListElement(el) {
             propsData: {
               zIndex: this.popupIndex++,
               links: links,
-              options: opts
-            }
+              options: opts,
+            },
           }).$mount();
-          popup.$on("close", function() {
+          popup.$on("close", function () {
             popup.$off("close");
             try {
               popup.$el.remove();
@@ -201,8 +201,8 @@ export function mountListElement(el) {
           });
           document.body.appendChild(popup.$el);
         }
-      }
-    }
+      },
+    },
   });
 
   list.$mount(el);

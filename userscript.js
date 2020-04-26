@@ -6,13 +6,13 @@ const ArrayKeys = [
   "exclude",
   "require",
   "resource",
-  "grant"
+  "grant",
 ];
 
 const IgnoreKeys = ["pkgName"];
 
 module.exports.config = userscriptConfig;
-module.exports.createBanner = function(isDev, buildNumber) {
+module.exports.createBanner = function (isDev, buildNumber) {
   const keys = Object.keys(userscriptConfig);
 
   const filteredKeys = [];
@@ -40,7 +40,7 @@ module.exports.createBanner = function(isDev, buildNumber) {
 
     if (ArrayKeys.indexOf(key) > -1) {
       if (Array.isArray(config) && config.length > 0) {
-        config.forEach(c => {
+        config.forEach((c) => {
           headers.push(`// @${key.padEnd(maxKeyLength + 1)} ${c}`);
         });
       } else if (typeof config === "string") {

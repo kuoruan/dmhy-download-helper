@@ -14,7 +14,7 @@ module.exports = {
     "*://share.dmhy.org/",
     "*://share.dmhy.org/topics/list/*",
     "*://share.dmhy.org/topics/list?*",
-    "*://share.dmhy.org/topics/view/*"
+    "*://share.dmhy.org/topics/view/*",
   ],
   require: ["https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js"],
   grant: "GM_setClipboard",
@@ -22,5 +22,5 @@ module.exports = {
   license: packageConfig.license,
   "run-at": "document-end",
   version: packageConfig.version || "1.0.0",
-  icon: "https://www.google.cn/s2/favicons?domain=share.dmhy.org"
+  icon: "https://www.google.cn/s2/favicons?domain=share.dmhy.org",
 };

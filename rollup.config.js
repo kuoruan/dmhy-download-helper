@@ -1,24 +1,24 @@
-const fs = require("fs");
-const path = require("path");
-const chalk = require("chalk");
+import fs from "fs";
+import path from "path";
+import chalk from "chalk";
 
-const AliasPlugin = require("@rollup/plugin-alias");
-const ResolvePlugin = require("@rollup/plugin-node-resolve");
-const CommonJSPlugin = require("@rollup/plugin-commonjs");
-const BabelPlugin = require("rollup-plugin-babel");
-const UrlPulgin = require("@rollup/plugin-url");
-const PostCSSPlugin = require("rollup-plugin-postcss");
-const StylusPlugin = require("rollup-plugin-stylus-compiler");
-const VuePlugin = require("rollup-plugin-vue");
-const ServePlugin = require("rollup-plugin-serve");
-const ESLintPlugin = require("rollup-plugin-eslint");
-const TerserPlugin = require("rollup-plugin-terser");
+import AliasPlugin from "@rollup/plugin-alias";
+import ResolvePlugin from "@rollup/plugin-node-resolve";
+import CommonJSPlugin from "@rollup/plugin-commonjs";
+import BabelPlugin from "rollup-plugin-babel";
+import UrlPulgin from "@rollup/plugin-url";
+import PostCSSPlugin from "rollup-plugin-postcss";
+import StylusPlugin from "rollup-plugin-stylus-compiler";
+import VuePlugin from "rollup-plugin-vue";
+import ServePlugin from "rollup-plugin-serve";
+import ESLintPlugin from "rollup-plugin-eslint";
+import TerserPlugin from "rollup-plugin-terser";
 
-const PostCSSUrl = require("postcss-url");
-const PostCSSAutoprefixer = require("autoprefixer");
-const PostCSSNano = require("cssnano");
+import PostCSSUrl from "postcss-url";
+import PostCSSAutoprefixer from "autoprefixer";
+import PostCSSNano from "cssnano";
 
-const { config, createBanner } = require("./userscript");
+import { config, createBanner } from "./userscript";
 
 const isProduction = process.env.NODE_ENV === "production";
 const buildNumberFile = path.resolve(__dirname, "BUILD");
@@ -36,7 +36,7 @@ function resolve(...paths) {
   return path.resolve(__dirname, ...paths);
 }
 
-module.exports = function () {
+export default function () {
   let buildNumber = 0;
 
   // Read build number from local file.
@@ -106,7 +106,6 @@ module.exports = function () {
         extensions: [".js", ".jsx", ".es6", ".es", ".mjs", ".vue"],
       }),
       TerserPlugin.terser({
-        sourcemap: false,
         mangle: false,
         ie8: false,
         keep_fnames: true,
@@ -145,4 +144,4 @@ module.exports = function () {
       exclude: "node_modules/**",
     },
   };
-};
+}

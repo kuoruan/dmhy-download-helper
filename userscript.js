@@ -1,4 +1,4 @@
-const userscriptConfig = require("./userscript.config");
+import userscriptConfig from "./userscript.config";
 
 const ArrayKeys = [
   "include",
@@ -11,8 +11,8 @@ const ArrayKeys = [
 
 const IgnoreKeys = ["pkgName"];
 
-module.exports.config = userscriptConfig;
-module.exports.createBanner = function (isDev, buildNumber) {
+export const config = userscriptConfig;
+export function createBanner(isDev, buildNumber) {
   const keys = Object.keys(userscriptConfig);
 
   const filteredKeys = [];
@@ -59,4 +59,4 @@ module.exports.createBanner = function (isDev, buildNumber) {
   headers.push("");
 
   return headers.join("\n");
-};
+}

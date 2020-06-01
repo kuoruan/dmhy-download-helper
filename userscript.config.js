@@ -1,6 +1,6 @@
-const packageConfig = require("./package.json");
+import packageConfig from "./package.json";
 
-module.exports = {
+export default {
   pkgName: packageConfig.name,
   name: "DMHY download helper",
   "name:zh-CN": "动漫花园下载助手",

@@ -69,12 +69,12 @@ export default {
       ) {
         return {
           "white-space": "nowrap",
-          "word-wrap": "normal",
+          "word-break": "normal",
         };
       } else {
         return {
-          "white-space": "pre-wrap",
-          "word-wrap": "break-all",
+          "white-space": "pre-line",
+          "word-break": "break-all",
         };
       }
     },

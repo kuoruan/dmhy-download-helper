@@ -103,17 +103,17 @@ export default {
         try {
           const text = this.content.substring(start, finish);
           GM_setClipboard(text, "{ type: 'text', mimetype: 'text/plain'}");
-          this.$toast.display("复制成功");
+          this.$toast.display("复制成功！");
         } catch (e) {
-          this.$toast.display("复制失败");
+          this.$toast.display("复制失败。");
         }
       } else {
-        this.$toast.display("获取文本框失败");
+        this.$toast.display("获取文本框失败！");
       }
     },
     copyAll() {
       if (!this.content) {
-        this.$toast.display("文本框内容为空");
+        this.$toast.display("文本框内容为空！");
         return;
       }
 
@@ -122,9 +122,9 @@ export default {
           this.content,
           "{ type: 'text', mimetype: 'text/plain'}"
         );
-        this.$toast.display("复制成功");
+        this.$toast.display("复制成功！");
       } catch (e) {
-        this.$toast.display("复制失败");
+        this.$toast.display("复制失败。");
       }
     },
     selectAll() {
@@ -132,7 +132,7 @@ export default {
       if (target) {
         target.select();
       } else {
-        this.$toast.display("获取文本框失败");
+        this.$toast.display("获取文本框失败！");
       }
     },
   },

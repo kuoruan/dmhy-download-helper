@@ -7,6 +7,7 @@ module.exports = {
       {
         modules: false,
         useBuiltIns: false,
+        corejs: false,
       },
     ],
   ],

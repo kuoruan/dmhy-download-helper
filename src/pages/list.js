@@ -1,3 +1,5 @@
+import TorrentDownloadHeader from "@/components/TorrentDownloadHeader.vue";
+import TorrentDownloadItem from "@/components/TorrentDownloadItem.vue";
 import CheckboxHeader from "@/components/CheckboxHeader.vue";
 import CheckboxItem from "@/components/CheckboxItem.vue";
 import LinksPopup from "@/components/LinksPopup.vue";
@@ -5,8 +7,11 @@ import ToolBar from "@/components/ToolBar.vue";
 import Vue from "vue";
 import { magnetLinksWithOptions } from "@/utils/misc";
 
-const HeaderVM = Vue.extend(CheckboxHeader);
-const ItemVM = Vue.extend(CheckboxItem);
+const CheckboxHeaderVM = Vue.extend(CheckboxHeader);
+const CheckboxItemVM = Vue.extend(CheckboxItem);
+
+const TorrentDownloadHeaderVM = Vue.extend(TorrentDownloadHeader);
+const TorrentDownloadItemVM = Vue.extend(TorrentDownloadItem);
 
 const ToolBarVM = Vue.extend(ToolBar);
 const LinksPopupVM = Vue.extend(LinksPopup);
@@ -58,7 +63,7 @@ export function mountListElement(el) {
             let body = table.tBodies[i];
 
             for (let j = 0, rowLen = body.rows.length; j < rowLen; j++) {
-              this.insertCheckBoxToRow(body.rows[j], index++);
+              this.insertItemToRow(body.rows[j], index++);
             }
           }
         } else {
@@ -68,7 +73,7 @@ export function mountListElement(el) {
               if (i === 0) {
                 this.insertHeaderToRow(row);
               } else {
-                this.insertCheckBoxToRow(row, i - 1);
+                this.insertItemToRow(row, i - 1);
               }
             }
           }
@@ -123,28 +128,63 @@ export function mountListElement(el) {
         this.toolbars.push(headerToolbar, bottomToobar);
       },
       insertHeaderToRow(row) {
-        const th = new HeaderVM().$mount();
-        th.$on("change", this.onSelectAllChange);
+        if (row.cells.length <= 0) return;
 
-        row.insertBefore(th.$el, row.cells[0]);
-        this.header = th;
+        const firstCell = row.cells[0];
+        let sizeCell;
+        if (row.cells.length >= 5) {
+          sizeCell = row.cells[4];
+        }
+
+        const checkboxTH = new CheckboxHeaderVM().$mount();
+        checkboxTH.$on("change", this.onSelectAllChange);
+
+        row.insertBefore(checkboxTH.$el, firstCell);
+        this.header = checkboxTH;
+
+        if (sizeCell) {
+          const bittorrentDownloadTH = new TorrentDownloadHeaderVM().$mount();
+          row.insertBefore(bittorrentDownloadTH.$el, sizeCell);
+        }
       },
-      insertCheckBoxToRow(row, index) {
-        const linkDOM = row.querySelector(".arrow-magnet");
+      insertItemToRow(row, index) {
+        if (row.cells.length <= 0) return;
 
-        const tdDOM = row.insertCell(0);
-        const td = new ItemVM({
+        const firstCell = row.cells[0];
+        let sizeCell;
+        if (row.cells.length >= 5) {
+          sizeCell = row.cells[4];
+        }
+
+        const magnetLinkDOM = row.querySelector("td > .arrow-magnet");
+
+        const checkboxTD = new CheckboxItemVM({
           propsData: {
             index: index,
-            magnet: linkDOM ? linkDOM.href : "",
+            magnet: magnetLinkDOM ? magnetLinkDOM.href : "",
           },
-        }).$mount(tdDOM);
+        }).$mount();
 
         const _self = this;
-        td.$on("change", function (checked) {
-          _self.onItemSelectChange(td, checked);
+        checkboxTD.$on("change", function (checked) {
+          _self.onItemSelectChange(checkboxTD, checked);
         });
-        this.all.push(td);
+        row.insertBefore(checkboxTD.$el, firstCell);
+
+        this.all.push(checkboxTD);
+
+        if (sizeCell) {
+          const detailLinkDom = row.querySelector("td.title > a");
+
+          const bittorrentDownloadTD = new TorrentDownloadItemVM({
+            propsData: {
+              index: index,
+              detailLink: detailLinkDom ? detailLinkDom.href : "",
+              title: detailLinkDom ? detailLinkDom.innerText : "",
+            },
+          }).$mount();
+          row.insertBefore(bittorrentDownloadTD.$el, sizeCell);
+        }
       },
       onSelectAllChange(checked) {
         this.all.forEach(function (item) {

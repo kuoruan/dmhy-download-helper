@@ -26,7 +26,7 @@
         ) 复制
         button.btn(
           @click="$emit('show', opts)"
-        ) 显示
+        ) 查看
 </template>
 
 <script>

@@ -17,7 +17,7 @@ export default {
     "*://share.dmhy.org/topics/view/*",
   ],
   require: ["https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js"],
-  connect: ["dl.dmhy.org"],
+  connect: "dmhy.org",
   grant: ["GM_setClipboard", "GM_xmlhttpRequest", "GM_download"],
   source: "https://github.com/kuoruan/dmhy-download-helper.git",
   license: packageConfig.license,

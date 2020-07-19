@@ -41,7 +41,7 @@ export default {
       GM_xmlhttpRequest({
         method: "GET",
         url: this.detailLink,
-        ontimeout: 5000,
+        timeout: 5000,
         context: { title: this.title },
         ontimeout: function () {
           _self.$toast.display("下载超时，请重试！");
@@ -66,10 +66,19 @@ export default {
       });
     },
     downloadTorrent(url, name) {
+      const _self = this;
+
       GM_xmlhttpRequest({
         method: "GET",
         url: url,
         responseType: "blob",
+        timeout: 5000,
+        onerror: function () {
+          _self.$toast.display(`下载失败，请重试！`);
+        },
+        ontimeout: function () {
+          _self.$toast.display("下载超时，请重试！");
+        },
         onload: function ({ response }) {
           const b = new Blob([response], { type: "application/octet-stream" });
           const herf = URL.createObjectURL(b);

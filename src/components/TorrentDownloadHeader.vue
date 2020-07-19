@@ -1,7 +1,7 @@
 <template lang="pug">
-  th.header(
-    width="4%", 
-    nowrap="nowrap", 
+  th(
+    width="5%",
+    nowrap="nowrap",
     class="{sorter: false}"
   )
     span(class="title") Torrent

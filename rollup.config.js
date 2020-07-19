@@ -111,6 +111,7 @@ export default function () {
           drop_console: false,
         },
         output: {
+          braces: true,
           beautify: true,
           indent_level: 2,
           max_line_len: 70,

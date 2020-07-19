@@ -108,20 +108,11 @@ export default function () {
       TerserPlugin.terser({
         mangle: false,
         ie8: false,
-        keep_fnames: true,
-        keep_classnames: true,
+        safari10: false,
         compress: {
-          arrows: true,
-          warnings: false,
           drop_console: false,
-          reduce_vars: false,
-          sequences: false,
-          keep_classnames: true,
-          keep_fargs: true,
-          keep_fnames: true,
         },
         output: {
-          comments: false,
           beautify: true,
           braces: true,
           indent_level: 2,

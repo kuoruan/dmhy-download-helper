@@ -6,6 +6,7 @@ const ArrayKeys = [
   "exclude",
   "require",
   "resource",
+  "connect",
   "grant",
 ];
 

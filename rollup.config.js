@@ -107,17 +107,13 @@ export default function () {
       }),
       TerserPlugin.terser({
         mangle: false,
-        ie8: false,
-        safari10: false,
         compress: {
           drop_console: false,
         },
         output: {
           beautify: true,
-          braces: true,
           indent_level: 2,
           max_line_len: 70,
-          semicolons: true,
           preamble: createBanner(!isProduction, buildNumber),
         },
       }),

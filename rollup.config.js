@@ -109,6 +109,8 @@ export default function () {
         mangle: false,
         compress: {
           drop_console: false,
+          drop_debugger: true,
+          sequences: false,
         },
         output: {
           braces: true,

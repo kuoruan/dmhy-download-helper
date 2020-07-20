@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import Bytes from "bytes";
+import XBytes from "xbytes";
 
 const Videos = ["mp4", "rmvb", "avi", "mkv", "wmv", "flv", "ts"];
 const Audios = ["mp3", "ogg", "wma", "wav", "aac", "flac", "mka", "cue"];
@@ -106,10 +106,7 @@ export default {
         sum = sizeList.reduce((a, b) => a + b, 0);
       }
 
-      return Bytes(sum, {
-        decimalPlaces: 2,
-        unitSeparator: " ",
-      });
+      return XBytes(sum, { iec: true, fixed: 1 });
     },
     icon() {
       if (this.isFolder) {

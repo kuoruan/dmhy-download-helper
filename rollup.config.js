@@ -53,13 +53,14 @@ export default function () {
     input: {
       [config.pkgName]: resolve("src", "main.js"),
     },
-    external: ["vue"],
+    external: ["vue", "xbytes"],
     output: {
       dir: resolve("dist"),
       entryFileNames: "[name].user.js",
       format: "iife",
       globals: {
         vue: "Vue",
+        xbytes: "xbytes",
       },
     },
     plugins: [

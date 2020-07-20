@@ -18,8 +18,8 @@
   },
   "homepage": "https://github.com/kuoruan/dmhy-download-helper#readme",
   "dependencies": {
-    "bytes": "^3.1.0",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "xbytes": "^1.6.2"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",

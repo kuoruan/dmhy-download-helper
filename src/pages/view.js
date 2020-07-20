@@ -1,4 +1,4 @@
-import Bytes from "bytes";
+import XBytes from "xbytes";
 import Tree from "@/components/Tree.vue";
 import Vue from "vue";
 import { hashCode } from "@/utils/misc";
@@ -29,7 +29,7 @@ function folderTreeFromNodeList(fileNodeList) {
       if (!isNaN(+bytes)) {
         fileBytes = +bytes;
       } else {
-        fileBytes = Bytes(fileSizeStr);
+        fileBytes = XBytes.parseSize(fileSizeStr, { iec: false });
       }
       filePath = nodeText.substring(0, nodeText.indexOf(fileSizeStr)).trim();
     } else {

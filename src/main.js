@@ -13,16 +13,17 @@ document.body.appendChild(toast.$el);
 
 Object.defineProperty(Vue.prototype, "$toast", { value: toast });
 
-const topicListEl = document.querySelector("#topic_list");
-if (topicListEl) {
+let topicListEl, fileListEl;
+
+if ((topicListEl = document.querySelector("#topic_list"))) {
   mountListElement(topicListEl);
 }
 
-const fileListEl = document.querySelector("#resource-tabs .file_list");
-if (fileListEl) {
+if ((fileListEl = document.querySelector("#resource-tabs .file_list"))) {
   let title = "";
-  const titleEl = document.querySelector(".topic-title h3");
-  if (titleEl) {
+
+  let titleEl;
+  if ((titleEl = document.querySelector(".topic-title h3"))) {
     title = titleEl.innerText.trim();
   }
   mountFileListElement(fileListEl, title);

@@ -5,7 +5,7 @@ import chalk from "chalk";
 import AliasPlugin from "@rollup/plugin-alias";
 import ResolvePlugin from "@rollup/plugin-node-resolve";
 import CommonJSPlugin from "@rollup/plugin-commonjs";
-import BabelPlugin from "rollup-plugin-babel";
+import BabelPlugin from "@rollup/plugin-babel";
 import UrlPulgin from "@rollup/plugin-url";
 import PostCSSPlugin from "rollup-plugin-postcss";
 import StylusPlugin from "rollup-plugin-stylus-compiler";
@@ -104,6 +104,7 @@ export default function () {
       ResolvePlugin(),
       CommonJSPlugin(),
       BabelPlugin({
+        babelHelpers: "bundled",
         extensions: [".js", ".jsx", ".es6", ".es", ".mjs", ".vue"],
       }),
       TerserPlugin.terser({

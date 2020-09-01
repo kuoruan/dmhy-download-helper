@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/kuoruan/dmhy-download-helper#readme",
   "dependencies": {
-    "vue": "^2.6.11",
+    "vue": "^2.6.12",
     "xbytes": "^1.6.2"
   },
   "devDependencies": {
@@ -48,6 +48,6 @@
     "rollup-plugin-terser": "^6.1.0",
     "rollup-plugin-vue": "^5.1.9",
     "stylus": "^0.54.8",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.12"
   }
 }

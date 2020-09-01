@@ -45,7 +45,7 @@
     "rollup-plugin-postcss": "^3.1.3",
     "rollup-plugin-serve": "^1.0.4",
     "rollup-plugin-stylus-compiler": "^1.0.1",
-    "rollup-plugin-terser": "^6.1.0",
+    "rollup-plugin-terser": "^7.0.1",
     "rollup-plugin-vue": "^5.1.9",
     "stylus": "^0.54.8",
     "vue-template-compiler": "^2.6.12"

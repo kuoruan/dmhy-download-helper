@@ -40,7 +40,7 @@
     "postcss-url": "^9.0.0",
     "prettier": "^2.1.2",
     "pug": "^3.0.0",
-    "rollup": "^2.32.1",
+    "rollup": "^2.34.0",
     "rollup-plugin-eslint": "^7.0.0",
     "rollup-plugin-postcss": "^3.1.8",
     "rollup-plugin-serve": "^1.0.4",

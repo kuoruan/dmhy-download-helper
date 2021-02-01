@@ -5111,10 +5111,10 @@ write@1.0.3:
   dependencies:
     mkdirp "^0.5.1"
 
-xbytes@^1.6.2:
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/xbytes/-/xbytes-1.6.2.tgz#9f9938af0cfc7b534d975d40403d6141a9011c4b"
-  integrity sha512-s55nhZJdJb8Aw17e7nLrZ08URst8K6HT+nhpa8tq3CTT6HzNfk6HtPBnX0j3tNCbCZyMMdBJMcXL8tLHlmXsXg==
+xbytes@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/xbytes/-/xbytes-1.7.0.tgz#a44ca476af66c54e79f744756a035326c697bb8d"
+  integrity sha512-iZglBXuHoC1F7jRz7746QhicNE167tEVq2H/iYQ1jIFdYIjqL8OfM86K52csfRZm+d83/VJO8bu37jN/G1ekKQ==
 
 xxhashjs@0.2.1:
   version "0.2.1"

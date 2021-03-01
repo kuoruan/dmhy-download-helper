@@ -34,7 +34,7 @@
     "babel-eslint": "^10.1.0",
     "chalk": "^4.1.0",
     "cssnano": "^4.1.10",
-    "eslint": "^7.19.0",
+    "eslint": "^7.21.0",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^7.6.0",
     "postcss-url": "^9.0.0",

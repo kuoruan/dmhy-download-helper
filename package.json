@@ -22,7 +22,7 @@
     "xbytes": "^1.7.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.10",
+    "@babel/core": "^7.13.8",
     "@babel/preset-env": "^7.12.11",
     "@rollup/plugin-alias": "^3.1.2",
     "@rollup/plugin-babel": "^5.2.3",

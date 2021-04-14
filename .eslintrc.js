@@ -13,11 +13,5 @@ module.exports = {
     "no-debugger": "off",
     "no-undef": "off",
   },
-  parser: "vue-eslint-parser",
-  parserOptions: {
-    parser: "babel-eslint",
-    ecmaVersion: 2018,
-    sourceType: "module",
-  },
   plugins: ["vue", "prettier"],
 };

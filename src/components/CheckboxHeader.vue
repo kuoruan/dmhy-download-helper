@@ -1,5 +1,5 @@
 <template lang="pug">
-  th.header(width="40")
+  th.header(width="40" class="{sorter: false}")
     input.select-all(
       type="checkbox",
       v-model="checked",

@@ -11,7 +11,7 @@ import PostCSSPlugin from "rollup-plugin-postcss";
 import StylusPlugin from "rollup-plugin-stylus-compiler";
 import VuePlugin from "rollup-plugin-vue";
 import ServePlugin from "rollup-plugin-serve";
-import ESLintPlugin from "rollup-plugin-eslint";
+import ESLintPlugin from "@rollup/plugin-eslint";
 import TerserPlugin from "rollup-plugin-terser";
 
 import PostCSSUrl from "postcss-url";
@@ -25,7 +25,7 @@ const buildNumberFile = path.resolve(__dirname, "BUILD");
 
 // Write new build number to file.
 function writeNewBuildNumber(number) {
-  fs.writeFile(buildNumberFile, number, function (err) {
+  fs.writeFile(buildNumberFile, String(number), function (err) {
     if (!err) {
       console.log(chalk.keyword("orange")(`build number set to ${number}`));
     }
@@ -69,7 +69,7 @@ export default function () {
           "@": resolve("src"),
         },
       }),
-      ESLintPlugin.eslint({
+      ESLintPlugin({
         include: ["src/**/*.js", "src/**/*.vue"],
         throwOnWarning: true,
         throwOnError: true,

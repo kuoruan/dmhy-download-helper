@@ -17,6 +17,20 @@ let topicListEl, fileListEl;
 
 if ((topicListEl = document.querySelector("#topic_list"))) {
   mountListElement(topicListEl);
+
+  if (
+    typeof jQuery !== "undefined" &&
+    typeof jQuery.tablesorter !== "undefined"
+  ) {
+    jQuery("#topic_list").tablesorter({ widgets: ["zebra"] });
+    jQuery("#topic_list")
+      .bind("sortStart", function () {
+        jQuery("#overlay").show();
+      })
+      .bind("sortEnd", function () {
+        jQuery("#overlay").hide();
+      });
+  }
 }
 
 if ((fileListEl = document.querySelector("#resource-tabs .file_list"))) {

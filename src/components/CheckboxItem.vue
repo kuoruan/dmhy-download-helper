@@ -31,6 +31,7 @@ export default {
 
 <style lang="stylus" scoped>
 .select
+  cursor: pointer
   width: 14px
   height: 14px
 </style>

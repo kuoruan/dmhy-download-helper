@@ -1,5 +1,5 @@
 <template lang="pug">
-  th.header(width="40" class="{sorter: false}")
+  th(width="40" class="{sorter: false}")
     input.select-all(
       type="checkbox",
       v-model="checked",
@@ -19,13 +19,8 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.header
-  cursor: default
-
-  .select-all
-    width: 14px
-    height: 14px
-
-  .title
-    margin-left: 5px
+.select-all
+  cursor: pointer
+  width: 14px
+  height: 14px
 </style>

@@ -5,7 +5,8 @@ export default {
   name: "DMHY download helper",
   "name:zh-CN": "动漫花园下载助手",
   description: packageConfig.description,
-  "description:zh-CN": "一个为动漫花园（share.dmhy.org）提供增强功能的用户脚本",
+  "description:zh-CN":
+    "动漫花园（share.dmhy.org）扩展，提供批量选择、列表下载种子文件及详情页树状展示等功能。",
   author: packageConfig.author,
   namespace: "https://github.com/kuoruan",
   homepage: packageConfig.homepage,

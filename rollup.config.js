@@ -113,6 +113,11 @@ export default function () {
           drop_console: false,
           drop_debugger: true,
           sequences: false,
+          join_vars: false,
+          reduce_funcs: false,
+          unsafe_undefined: true,
+          conditionals: false,
+          unused: true,
         },
         output: {
           braces: true,

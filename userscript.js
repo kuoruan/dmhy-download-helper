@@ -49,7 +49,7 @@ export function createBanner(isDev, buildNumber) {
       }
     } else if (key === "version" && isDev) {
       headers.push(
-        `// @${key.padEnd(maxKeyLength + 1)} ${config}-build.${buildNumber}`
+        `// @${key.padEnd(maxKeyLength + 1)} ${config}-alpha.${buildNumber}`
       );
     } else {
       headers.push(`// @${key.padEnd(maxKeyLength + 1)} ${config}`);

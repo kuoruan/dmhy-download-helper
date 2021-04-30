@@ -32,7 +32,7 @@
     "@rollup/plugin-url": "^6.0.0",
     "@vue/eslint-config-prettier": "^6.0.0",
     "autoprefixer": "^9.8.6",
-    "chalk": "^4.1.0",
+    "chalk": "^4.1.1",
     "cssnano": "^4.1.10",
     "eslint": "^7.21.0",
     "eslint-plugin-prettier": "^3.4.0",

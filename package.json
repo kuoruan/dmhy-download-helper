@@ -41,7 +41,7 @@
     "postcss-url": "^9.0.0",
     "prettier": "^2.2.1",
     "pug": "^3.0.2",
-    "rollup": "^2.40.0",
+    "rollup": "^2.46.0",
     "rollup-plugin-postcss": "^3.1.8",
     "rollup-plugin-serve": "^1.1.0",
     "rollup-plugin-stylus-compiler": "^1.0.1",

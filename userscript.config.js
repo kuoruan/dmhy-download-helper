@@ -27,5 +27,5 @@ export default {
   license: packageConfig.license,
   "run-at": "document-end",
   version: packageConfig.version || "1.0.0",
-  icon: "https://www.google.cn/s2/favicons?domain=share.dmhy.org",
+  icon: "https://share.dmhy.org/favicon.ico",
 };

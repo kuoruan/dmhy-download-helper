@@ -158,7 +158,7 @@ export default {
 li.tree-item
   margin: 0
   padding: 2px 0 2px 16px
-  background: url('/assets/img/treeview-default-line.gif') 0 0 no-repeat
+  background: url('@/assets/img/treeview-default-line.gif') 0 0 no-repeat
 
   &.collection
     background-position: 0 -176px
@@ -171,7 +171,7 @@ li.tree-item
     margin-left: -16px
     width: 16px
     height: 16px
-    background: url('/assets/img/treeview-default.gif') -48px -47px no-repeat
+    background: url('@/assets/img/treeview-default.gif') -48px -47px no-repeat
     cursor: pointer
 
     &.last-hitarea
@@ -214,13 +214,13 @@ li.tree-item
       content: ''
 
     &.folder-close:before
-      background-image: url('/assets/img/folder-closed.gif')
+      background-image: url('@/assets/img/folder-closed.gif')
 
     &.folder-open:before
-      background-image: url('/assets/img/folder.gif')
+      background-image: url('@/assets/img/folder.gif')
 
     &.document:before
-      background-image: url('/assets/img/file.gif')
+      background-image: url('@/assets/img/file.gif')
 
     &.video:before
       background-image: url('https://share.dmhy.org/images/icon/mkv.gif')

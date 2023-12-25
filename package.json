@@ -22,7 +22,7 @@
   "homepage": "https://github.com/kuoruan/dmhy-download-helper#readme",
   "dependencies": {
     "vue": "^2.7.16",
-    "xbytes": "^1.7.0"
+    "xbytes": "^1.8.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue2": "^2.3.1",

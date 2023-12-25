@@ -9,7 +9,7 @@ dependencies:
     specifier: ^2.7.16
     version: 2.7.16
   xbytes:
-    specifier: ^1.7.0
+    specifier: ^1.8.0
     version: 1.8.0
 
 devDependencies:

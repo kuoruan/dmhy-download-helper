@@ -18,8 +18,8 @@ export default {
     "*://share.dmhy.org/topics/view/*",
   ],
   require: [
-    "https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js",
-    "https://cdn.jsdelivr.net/npm/xbytes@1.7.0/dist/index.min.js",
+    "https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.min.js",
+    "https://cdn.jsdelivr.net/npm/xbytes@1.8.0/dist/index.min.js",
   ],
   connect: "dmhy.org",
   grant: ["GM_setClipboard", "GM_xmlhttpRequest"],

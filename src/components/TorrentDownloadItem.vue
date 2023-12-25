@@ -54,11 +54,16 @@ export default {
           if (
             responseText &&
             (matches = responseText.match(
-              /<a href="((?:https?)?\/\/dl\.dmhy\.org\/[^"]+\.torrent)">(.+)?<\/a>/,
+              /<a(?:.+)href="((?:https?:)?\/\/dl\.dmhy\.org\/[^"]+\.torrent)"(?:.*)>(.+)?<\/a>/,
             )) &&
             matches.length >= 3
           ) {
-            _self.downloadTorrent(matches[1], `${matches[2] || title}.torrent`);
+            let url = matches[1];
+            if (url.indexOf("//") === 0) {
+              url = window.location.protocol + url;
+            }
+
+            _self.downloadTorrent(url, `${matches[2] || title}.torrent`);
           } else {
             _self.$toast.display("获取下载链接失败！");
           }

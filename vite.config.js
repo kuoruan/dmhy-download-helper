@@ -1,8 +1,8 @@
-import fs from "fs";
-import chalk from "chalk";
-import { defineConfig } from "vite";
-import { fileURLToPath } from "url";
 import vue2 from "@vitejs/plugin-vue2";
+import chalk from "chalk";
+import fs from "fs";
+import { fileURLToPath } from "url";
+import { defineConfig } from "vite";
 import banner from "vite-plugin-banner";
 
 import { createBanner } from "./userscript";

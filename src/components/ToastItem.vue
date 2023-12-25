@@ -5,7 +5,7 @@
 
 <script>
 export default {
-  name: "Toast",
+  name: "ToastItem",
   data() {
     return {
       text: "",

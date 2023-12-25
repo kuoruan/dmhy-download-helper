@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: "Popup",
+  name: "PopupWrapper",
   props: {
     zIndex: {
       type: Number,
@@ -38,7 +38,7 @@ export default {
       const { scrollTop, scrollHeight, clientHeight } = el;
 
       const isAutoOrScroll = /(auto|scroll)/.test(
-        overflow + overflowX + overflowY
+        overflow + overflowX + overflowY,
       ); // overflow is auto or scroll
 
       const scroll =

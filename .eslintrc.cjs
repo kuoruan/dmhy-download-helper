@@ -8,10 +8,13 @@ module.exports = {
     "plugin:vue/recommended",
     "@vue/prettier",
   ],
+  plugins: ["vue", "prettier", "simple-import-sort"],
   rules: {
     "no-console": "off",
     "no-debugger": "off",
     "no-undef": "off",
+
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
   },
-  plugins: ["vue", "prettier"],
 };

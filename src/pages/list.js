@@ -1,10 +1,11 @@
-import TorrentDownloadHeader from "@/components/TorrentDownloadHeader.vue";
-import TorrentDownloadItem from "@/components/TorrentDownloadItem.vue";
+import Vue from "vue";
+
 import CheckboxHeader from "@/components/CheckboxHeader.vue";
 import CheckboxItem from "@/components/CheckboxItem.vue";
 import LinksPopup from "@/components/LinksPopup.vue";
 import ToolBar from "@/components/ToolBar.vue";
-import Vue from "vue";
+import TorrentDownloadHeader from "@/components/TorrentDownloadHeader.vue";
+import TorrentDownloadItem from "@/components/TorrentDownloadItem.vue";
 import { magnetLinksWithOptions } from "@/utils/misc";
 
 const CheckboxHeaderVM = Vue.extend(CheckboxHeader);
@@ -121,7 +122,7 @@ export function mountListElement(el) {
 
         tableContainer.insertBefore(
           headerToolbar.$el,
-          tableContainer.firstChild
+          tableContainer.firstChild,
         );
         tableContainer.appendChild(bottomToobar.$el);
 

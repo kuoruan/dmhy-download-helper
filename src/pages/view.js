@@ -1,9 +1,10 @@
-import XBytes from "xbytes";
-import Tree from "@/components/Tree.vue";
 import Vue from "vue";
+import XBytes from "xbytes";
+
+import TreeRoot from "@/components/TreeRoot.vue";
 import { hashCode } from "@/utils/misc";
 
-const TreeVM = Vue.extend(Tree);
+const TreeRootVM = Vue.extend(TreeRoot);
 
 function folderTreeFromNodeList(fileNodeList) {
   const map = {};
@@ -49,7 +50,7 @@ function folderTreeFromNodeList(fileNodeList) {
 
       let baseName = filePath.substring(
         0,
-        filePath.indexOf(fileName) + fileName.length
+        filePath.indexOf(fileName) + fileName.length,
       );
       let key = hashCode(baseName);
 
@@ -98,7 +99,7 @@ export function mountFileListElement(el, title) {
     return;
   }
 
-  const tree = new TreeVM({
+  const tree = new TreeRootVM({
     propsData: {
       folders:
         (folders.length > 1 || folders[0].size) && title

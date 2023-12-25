@@ -54,7 +54,7 @@ export default {
           if (
             responseText &&
             (matches = responseText.match(
-              /<a href="((?:https?)?\/\/dl\.dmhy\.org\/[^"]+\.torrent)">(.+)?<\/a>/
+              /<a href="((?:https?)?\/\/dl\.dmhy\.org\/[^"]+\.torrent)">(.+)?<\/a>/,
             )) &&
             matches.length >= 3
           ) {

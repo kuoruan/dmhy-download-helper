@@ -13,7 +13,7 @@
 import TreeItem from "@/components/TreeItem.vue";
 
 export default {
-  name: "Tree",
+  name: "TreeRoot",
   components: {
     TreeItem,
   },

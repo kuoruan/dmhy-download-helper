@@ -1,5 +1,5 @@
 <template lang="pug">
-  popup(
+  popup-wrapper(
     :z-index="zIndex",
     @overlay-click="$emit('close')",
     :middle="false",
@@ -27,13 +27,13 @@
 </template>
 
 <script>
-import Popup from "@/components/Popup.vue";
+import PopupWrapper from "@/components/PopupWrapper.vue";
 import { getDefaultLinebreak } from "@/utils/misc";
 
 export default {
   name: "LinksPopup",
   components: {
-    Popup,
+    PopupWrapper,
   },
   props: {
     zIndex: {
@@ -120,7 +120,7 @@ export default {
       try {
         GM_setClipboard(
           this.content,
-          "{ type: 'text', mimetype: 'text/plain'}"
+          "{ type: 'text', mimetype: 'text/plain'}",
         );
         this.$toast.display("复制成功！");
       } catch (e) {

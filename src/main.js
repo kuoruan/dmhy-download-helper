@@ -1,14 +1,15 @@
 import "@/assets/css/common.styl";
 
-import Toast from "@/components/Toast.vue";
 import Vue from "vue";
-import { mountFileListElement } from "@/pages/view";
+
+import ToastItem from "@/components/ToastItem.vue";
 import { mountListElement } from "@/pages/list";
+import { mountFileListElement } from "@/pages/view";
 
 // Init toast item
-const ToastVM = Vue.extend(Toast);
+const ToastItemVM = Vue.extend(ToastItem);
 
-const toast = new ToastVM().$mount();
+const toast = new ToastItemVM().$mount();
 document.body.appendChild(toast.$el);
 
 Object.defineProperty(Vue.prototype, "$toast", { value: toast });

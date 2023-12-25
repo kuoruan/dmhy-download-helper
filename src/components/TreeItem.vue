@@ -48,10 +48,6 @@ const Documents = [
 export default {
   name: "TreeItem",
   props: {
-    key: {
-      type: Number,
-      default: -1,
-    },
     parentKey: {
       type: Number,
       default: -1,

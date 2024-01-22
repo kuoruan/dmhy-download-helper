@@ -16,6 +16,10 @@ export default {
     "*://share.dmhy.org/topics/list/*",
     "*://share.dmhy.org/topics/list?*",
     "*://share.dmhy.org/topics/view/*",
+    "*://dmhy.b168.net/",
+    "*://dmhy.b168.net/topics/list/*",
+    "*://dmhy.b168.net/topics/list?*",
+    "*://dmhy.b168.net/topics/view/*",
   ],
   require: [
     "https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.min.js",

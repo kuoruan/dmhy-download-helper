@@ -1,6 +1,6 @@
 <template lang="pug">
-  div.toast(:class="{'show': show}")
-    span.text {{ text }}
+div.toast(:class="{'show': show}")
+  span.text {{ text }}
 </template>
 
 <script>

@@ -1,29 +1,29 @@
 <template lang="pug">
-  popup-wrapper(
-    :z-index="zIndex",
-    @overlay-click="$emit('close')",
-    :middle="false",
-    :margin-top="100",
-  )
-    div.popup-header
-      h4 查看链接
-      button.btn(@click="$emit('close')") 关闭
-    div.popup-body
-      textarea.links-box(
-        v-model="content",
-        rows="10",
-        cols="80",
-        :style="textStyle",
-        ref="textarea"
-      )
-    div.popup-footer
-      button.btn(@click="resetContent") 重置
+popup-wrapper(
+  :z-index="zIndex",
+  @overlay-click="$emit('close')",
+  :middle="false",
+  :margin-top="100",
+)
+  div.popup-header
+    h4 查看链接
+    button.btn(@click="$emit('close')") 关闭
+  div.popup-body
+    textarea.links-box(
+      v-model="content",
+      rows="10",
+      cols="80",
+      :style="textStyle",
+      ref="textarea"
+    )
+  div.popup-footer
+    button.btn(@click="resetContent") 重置
 
-      button.btn(@click="selectAll") 全选
-      button.btn(@click="copySelected") 复制选中
-      button.btn(@click="copyAll") 复制全部
+    button.btn(@click="selectAll") 全选
+    button.btn(@click="copySelected") 复制选中
+    button.btn(@click="copyAll") 复制全部
 
-      p 共 {{ links.length }} 条链接
+    p 共 {{ links.length }} 条链接
 </template>
 
 <script>

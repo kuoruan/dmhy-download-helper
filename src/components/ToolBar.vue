@@ -1,32 +1,32 @@
 <template lang="pug">
-  div.tool-bar(
-    :class="[position, {'visible': visible}]"
-  )
-    div.wrapper
-      span.title 下载助手
-      label(:for="`clean-${position}`") 清理链接：
-      input.checkbox(
-        :id="`clean-${position}`",
-        type="checkbox",
-        v-model="opts.clean"
-      )
-      label(:for="`separator-${position}`") 分隔符：
-      select(
-        v-model="opts.separator",
-        :id="`separator-${position}`"
-      )
-        option(value="\n") \n
-        option(value="\r\n") \r\n
-        option(value="\t") \t
-        option(value=" ") 空格
-        option(value=",") ,
-      .btn-wrapper
-        button.btn(
-          @click="$emit('copy', opts)"
-        ) 复制
-        button.btn(
-          @click="$emit('show', opts)"
-        ) 查看
+div.tool-bar(
+  :class="[position, {'visible': visible}]"
+)
+  div.wrapper
+    span.title 下载助手
+    label(:for="`clean-${position}`") 清理链接：
+    input.checkbox(
+      :id="`clean-${position}`",
+      type="checkbox",
+      v-model="opts.clean"
+    )
+    label(:for="`separator-${position}`") 分隔符：
+    select(
+      v-model="opts.separator",
+      :id="`separator-${position}`"
+    )
+      option(value="\n") \n
+      option(value="\r\n") \r\n
+      option(value="\t") \t
+      option(value=" ") 空格
+      option(value=",") ,
+    .btn-wrapper
+      button.btn(
+        @click="$emit('copy', opts)"
+      ) 复制
+      button.btn(
+        @click="$emit('show', opts)"
+      ) 查看
 </template>
 
 <script>

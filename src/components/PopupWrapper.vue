@@ -1,15 +1,15 @@
 <template lang="pug">
-  div.overlay(
-    @click.self="$emit('overlay-click')",
-    @touchmove="onScroll",
-    @mousewheel="onScroll",
-    :style="{'z-index': zIndex}"
+div.overlay(
+  @click.self="$emit('overlay-click')",
+  @touchmove="onScroll",
+  @mousewheel="onScroll",
+  :style="{'z-index': zIndex}"
+)
+  div.popup(
+    :class="{'middle': middle}",
+    :style="{'margin-top': `${marginTop}px`}"
   )
-    div.popup(
-      :class="{'middle': middle}",
-      :style="{'margin-top': `${marginTop}px`}"
-    )
-      slot
+    slot
 </template>
 
 <script>

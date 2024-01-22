@@ -1,11 +1,11 @@
 <template lang="pug">
-  td(width="40")
-    input.select(
-      type="checkbox",
-      v-model="checked",
-      :data-index="index",
-      @change="$emit('change', $event.target.checked)"
-    )
+td(width="40")
+  input.select(
+    type="checkbox",
+    v-model="checked",
+    :data-index="index",
+    @change="$emit('change', $event.target.checked)"
+  )
 </template>
 
 <script>

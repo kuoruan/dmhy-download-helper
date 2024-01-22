@@ -1,10 +1,10 @@
 <template lang="pug">
-  th(width="40" class="{sorter: false}")
-    input.select-all(
-      type="checkbox",
-      v-model="checked",
-      @change="$emit('change', $event.target.checked)"
-    )
+th(width="40" class="{sorter: false}")
+  input.select-all(
+    type="checkbox",
+    v-model="checked",
+    @change="$emit('change', $event.target.checked)"
+  )
 </template>
 
 <script>

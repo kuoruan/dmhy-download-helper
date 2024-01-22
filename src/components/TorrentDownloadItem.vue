@@ -1,20 +1,20 @@
 <template lang="pug">
-  td(
-    nowrap="nowrap",
-    align="center"
+td(
+  nowrap="nowrap",
+  align="center"
+)
+  span(
+    v-if="loading",
+    class="loading"
   )
-    span(
-      v-if="loading",
-      class="loading"
-    )
-    a(
-      v-else,
-      title="Torrent 下载",
-      href="javascript:void(0);",
-      class="download-arrow arrow-torrent",
-      :data-index="index",
-      @click="getAndDownloadTorrent"
-    )
+  a(
+    v-else,
+    title="Torrent 下载",
+    href="javascript:void(0);",
+    class="download-arrow arrow-torrent",
+    :data-index="index",
+    @click="getAndDownloadTorrent"
+  )
 </template>
 
 <script>

@@ -1,27 +1,27 @@
 <template lang="pug">
-  li.tree-item(:class="{ 'collection': this.isFolder, 'last': this.isLast }")
-    div.hitarea(
-      v-if="isFolder",
-      :class="{ 'collapsable-hitarea': isOpen, 'last-hitarea': isLast }",
-      @click="toggle"
+li.tree-item(:class="{ 'collection': this.isFolder, 'last': this.isLast }")
+  div.hitarea(
+    v-if="isFolder",
+    :class="{ 'collapsable-hitarea': isOpen, 'last-hitarea': isLast }",
+    @click="toggle"
+  )
+  div(
+    @click="isFolder && toggle()",
+    :class="['title', icon]"
+  )
+    h5 {{ name }}
+    span.size {{ totalSize }}
+  ul(
+    v-if="isFolder",
+    v-show="isOpen"
+  )
+    tree-item(
+      class="item",
+      v-for="(child, index) in children"
+      :key="child.key",
+      v-bind="child",
+      :is-last="index === children.length -1"
     )
-    div(
-      @click="isFolder && toggle()",
-      :class="['title', icon]"
-    )
-      h5 {{ name }}
-      span.size {{ totalSize }}
-    ul(
-      v-if="isFolder",
-      v-show="isOpen"
-    )
-      tree-item(
-        class="item",
-        v-for="(child, index) in children"
-        :key="child.key",
-        v-bind="child",
-        :is-last="index === children.length -1"
-      )
 </template>
 
 <script>

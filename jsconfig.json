@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+    }
+  },
+  "vueCompilerOptions": {
+    "target": 2.7,
+    "plugins": [
+      "@vue/language-plugin-pug"
+    ]
+  }
+}

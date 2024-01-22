@@ -4,6 +4,7 @@ import fs from "fs";
 import { fileURLToPath } from "url";
 import { defineConfig } from "vite";
 import banner from "vite-plugin-banner";
+import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
 
 import { createBanner } from "./userscript";
 
@@ -45,7 +46,7 @@ export default defineConfig(({ command }) => {
     build: {
       minify: false,
       cssMinify: true,
-      cssCodeSplit: true,
+      cssCodeSplit: false,
       assetsInlineLimit: Number.POSITIVE_INFINITY, // always inline assets
       rollupOptions: {
         input: {
@@ -67,8 +68,17 @@ export default defineConfig(({ command }) => {
     plugins: [
       vue2(),
       banner({
-        content: createBanner(isServe, buildNumber),
+        content: (fileName) => {
+          return fileName.endsWith(".js")
+            ? createBanner(isServe, buildNumber)
+            : "";
+        },
         verify: false,
+      }),
+      cssInjectedByJsPlugin({
+        injectCode: (cssCode) => {
+          return `GM_addStyle(${cssCode})`;
+        },
       }),
     ],
   };

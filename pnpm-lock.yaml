@@ -49,6 +49,9 @@ devDependencies:
   vite-plugin-banner:
     specifier: ^0.7.1
     version: 0.7.1
+  vite-plugin-css-injected-by-js:
+    specifier: ^3.3.1
+    version: 3.3.1(vite@5.0.12)
 
 packages:
 
@@ -1598,6 +1601,14 @@ packages:
 
   /vite-plugin-banner@0.7.1:
     resolution: {integrity: sha512-Bww2Xd5tOGsZ1yZ9rQiGneryvsL1u86znPrqeQjCsXPsG72pnSdV5lcQA+cy8UNDguMqyTJiCevlNUbLnT85UA==}
+    dev: true
+
+  /vite-plugin-css-injected-by-js@3.3.1(vite@5.0.12):
+    resolution: {integrity: sha512-PjM/X45DR3/V1K1fTRs8HtZHEQ55kIfdrn+dzaqNBFrOYO073SeSNCxp4j7gSYhV9NffVHaEnOL4myoko0ePAg==}
+    peerDependencies:
+      vite: '>2.0.0-0'
+    dependencies:
+      vite: 5.0.12(stylus@0.62.0)
     dev: true
 
   /vite@5.0.12(stylus@0.62.0):

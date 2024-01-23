@@ -31,5 +31,13 @@ export function hashCode(str) {
   return hash;
 }
 
-export const TORRENT_LINK_TAG_REGEX =
-  /<a(?:.+)href="((?:https?:)?\/\/[a-zA-Z0-9.-]+\/[^"]+\.torrent)"(?:.*)>(.+)?<\/a>/;
+const TORRENT_LINK_TAG_REGEX =
+  /<a(?:.+)href="((?:https?:)?\/\/[a-zA-Z0-9.-]+[^"]+\.torrent)"(?:.*)>(.+)?<\/a>/;
+
+export function getTorrentLinkFromHTML(html) {
+  const matches = html.match(TORRENT_LINK_TAG_REGEX);
+  if (matches && matches.length === 3) {
+    return { href: matches[1].replace(/\n/g, ""), title: matches[2] };
+  }
+  return null;
+}

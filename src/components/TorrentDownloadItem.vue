@@ -18,7 +18,7 @@ td(
 </template>
 
 <script>
-import { TORRENT_LINK_TAG_REGEX } from "@/utils/misc";
+import { getTorrentLinkFromHTML } from "@/utils/misc";
 
 export default {
   name: "TorrentDownloadItem",
@@ -56,20 +56,19 @@ export default {
             reject(new Error("下载失败，请重试！"));
           },
           onload: ({ context = {}, responseText = "" }) => {
-            let matches;
+            let torrent;
             if (
               responseText &&
-              (matches = responseText.match(TORRENT_LINK_TAG_REGEX)) &&
-              matches.length >= 3
+              (torrent = getTorrentLinkFromHTML(responseText))
             ) {
-              let url = matches[1];
+              let url = torrent.href;
               if (url.indexOf("//") === 0) {
                 url = window.location.protocol + url;
               }
 
               resolve({
-                url,
-                filename: `${matches[2] || context.pageTitle}.torrent`,
+                url: url,
+                filename: `${torrent.title || context.pageTitle}.torrent`,
               });
             } else {
               reject(new Error("获取下载链接失败！"));

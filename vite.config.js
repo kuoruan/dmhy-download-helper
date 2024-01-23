@@ -56,7 +56,7 @@ export default defineConfig(({ mode }) => {
             xbytes: "xbytes",
           },
         },
-        external: ["vue", "xbytes"],
+        external: ["vue", "xbytes", /^\/images/],
       },
     },
     plugins: [

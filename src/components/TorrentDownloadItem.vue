@@ -47,7 +47,7 @@ export default {
         GM_xmlhttpRequest({
           method: "GET",
           url: pageLink,
-          timeout: 5000,
+          timeout: 15000,
           context: { pageTitle },
           ontimeout: () => {
             reject(new Error("下载超时，请重试！"));
@@ -85,7 +85,7 @@ export default {
           method: "GET",
           url: torrentUrl,
           responseType: "blob",
-          timeout: 5000,
+          timeout: 15000,
           ontimeout: () => {
             reject(new Error("下载超时，请重试！"));
           },

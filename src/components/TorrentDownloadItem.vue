@@ -40,87 +40,83 @@ export default {
     };
   },
   methods: {
-    getAndDownloadTorrent() {
+    getTorrentUrl(pageLink, pageTitle) {
+      return new Promise((resolve, reject) => {
+        GM_xmlhttpRequest({
+          method: "GET",
+          url: pageLink,
+          timeout: 5000,
+          context: { pageTitle },
+          ontimeout: function () {
+            reject(new Error("下载超时，请重试！"));
+          },
+          onerror: function () {
+            reject(new Error("下载失败，请重试！"));
+          },
+          onload: function ({ context = {}, responseText = "" }) {
+            let matches;
+            if (
+              responseText &&
+              (matches = responseText.match(
+                /<a(?:.+)href="((?:https?:)?\/\/[a-zA-Z0-9.-]+\/[^"]+\.torrent)"(?:.*)>(.+)?<\/a>/,
+              )) &&
+              matches.length >= 3
+            ) {
+              let url = matches[1];
+              if (url.indexOf("//") === 0) {
+                url = window.location.protocol + url;
+              }
+
+              resolve({
+                url,
+                filename: `${matches[2] || context.pageTitle}.torrent`,
+              });
+            } else {
+              reject(new Error("获取下载链接失败！"));
+            }
+          },
+        });
+      });
+    },
+    downloadTorrent(url, name) {
+      return new Promise((resolve, reject) => {
+        GM_download({
+          url,
+          name,
+          saveAs: true,
+          conflictAction: "prompt",
+          onload: function () {
+            resolve();
+          },
+          ontimeout: function () {
+            reject(new Error("下载超时，请重试！"));
+          },
+          onerror: function () {
+            reject(new Error("下载失败，请重试！"));
+          },
+        });
+      });
+    },
+    async getAndDownloadTorrent() {
       if (!this.detailLink) {
         this.$toast.display("无法获取下载链接。");
         return;
       }
 
-      this.loading = true;
+      try {
+        this.loading = true;
 
-      const _self = this;
+        const { url, filename } = await this.getTorrentUrl(
+          this.detailLink,
+          this.title,
+        );
 
-      GM_xmlhttpRequest({
-        method: "GET",
-        url: this.detailLink,
-        timeout: 5000,
-        context: { title: this.title },
-        ontimeout: function () {
-          _self.loading = false;
-          _self.$toast.display("下载超时，请重试！");
-        },
-        onerror: function () {
-          _self.loading = false;
-          _self.$toast.display(`下载失败，请重试！`);
-        },
-        onload: function ({ context: { title = "" } = {}, responseText = "" }) {
-          let matches;
-          if (
-            responseText &&
-            (matches = responseText.match(
-              /<a(?:.+)href="((?:https?:)?\/\/dl\.dmhy\.org\/[^"]+\.torrent)"(?:.*)>(.+)?<\/a>/,
-            )) &&
-            matches.length >= 3
-          ) {
-            let url = matches[1];
-            if (url.indexOf("//") === 0) {
-              url = window.location.protocol + url;
-            }
-
-            _self.downloadTorrent(url, `${matches[2] || title}.torrent`);
-          } else {
-            _self.loading = false;
-            _self.$toast.display("获取下载链接失败！");
-          }
-        },
-      });
-    },
-    downloadTorrent(url, name) {
-      const _self = this;
-
-      GM_xmlhttpRequest({
-        method: "GET",
-        url: url,
-        responseType: "blob",
-        timeout: 5000,
-        onerror: function () {
-          _self.loading = false;
-          _self.$toast.display(`下载失败，请重试！`);
-        },
-        ontimeout: function () {
-          _self.loading = false;
-          _self.$toast.display("下载超时，请重试！");
-        },
-        onload: function ({ response }) {
-          const b = new Blob([response], { type: "application/octet-stream" });
-          const herf = URL.createObjectURL(b);
-
-          const anchor = document.createElement("a");
-          anchor.href = herf;
-          anchor.style.display = "none";
-          anchor.download = name;
-
-          _self.$el.appendChild(anchor);
-          anchor.click();
-
-          setTimeout(() => {
-            _self.$el.removeChild(anchor);
-            URL.revokeObjectURL(herf);
-          }, 0);
-
-          _self.loading = false;
-        },
-      });
+        await this.downloadTorrent(url, filename);
+      } catch (e) {
+        this.$toast.display(e.message);
+      } finally {
+        this.loading = false;
+      }
     },
   },
 };

@@ -219,22 +219,22 @@ li.tree-item
       background-image: url('@/assets/img/file.gif')
 
     &.video:before
-      background-image: url('https://share.dmhy.org/images/icon/mkv.gif')
+      background-image: url('///images/icon/mkv.gif')
 
     &.audio:before
-      background-image: url('https://share.dmhy.org/images/icon/mp3.gif')
+      background-image: url('///images/icon/mp3.gif')
 
     &.image:before
-      background-image: url('https://share.dmhy.org/images/icon/jpg.gif')
+      background-image: url('///images/icon/jpg.gif')
 
     &.archive:before
-      background-image: url('https://share.dmhy.org/images/icon/rar.gif')
+      background-image: url('///images/icon/rar.gif')
 
     &.subtitle:before
-      background-image: url('https://share.dmhy.org/images/icon/txt.gif')
+      background-image: url('///images/icon/txt.gif')
 
     &.unknown:before
-      background-image: url('https://share.dmhy.org/images/icon/unknown.gif')
+      background-image: url('///images/icon/unknown.gif')
 
     .size
       display: block

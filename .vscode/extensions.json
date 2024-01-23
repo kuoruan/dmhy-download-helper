@@ -1,6 +1,6 @@
 {
   "recommendations": [
-    "vue.vscode-typescript-vue-plugin",
-    "sysoev.language-stylus"
+    "sysoev.language-stylus",
+    "vue.volar"
   ]
 }

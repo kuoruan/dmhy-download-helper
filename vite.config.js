@@ -30,10 +30,6 @@ if (fs.existsSync(buildNumberFile)) {
 export default defineConfig(({ mode }) => {
   const isDev = mode === "dev";
 
-  if (isDev) {
-    writeNewBuildNumber(++buildNumber);
-  }
-
   return {
     resolve: {
       alias: {
@@ -44,6 +40,7 @@ export default defineConfig(({ mode }) => {
       minify: false,
       cssMinify: true,
       cssCodeSplit: false,
+      sourcemap: false,
       assetsInlineLimit: Number.POSITIVE_INFINITY, // always inline assets
       rollupOptions: {
         input: {
@@ -66,6 +63,10 @@ export default defineConfig(({ mode }) => {
       vue2(),
       banner({
         content: (fileName) => {
+          if (isDev) {
+            writeNewBuildNumber(++buildNumber);
+          }
+
           return fileName.endsWith(".js")
             ? createBanner(isDev, buildNumber)
             : "";

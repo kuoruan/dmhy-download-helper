@@ -26,7 +26,7 @@ export default {
     "https://cdn.jsdelivr.net/npm/xbytes@1.8.0/dist/index.min.js",
   ],
   connect: ["dmhy.org", "b168.net"],
-  grant: ["GM_addStyle", "GM_setClipboard", "GM_xmlhttpRequest", "GM_download"],
+  grant: ["GM_addStyle", "GM_setClipboard", "GM_xmlhttpRequest"],
   source: "https://github.com/kuoruan/dmhy-download-helper.git",
   license: packageConfig.license,
   "run-at": "document-end",

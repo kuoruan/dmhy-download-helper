@@ -47,13 +47,13 @@ export default {
           url: pageLink,
           timeout: 5000,
           context: { pageTitle },
-          ontimeout: function () {
+          ontimeout: () => {
             reject(new Error("下载超时，请重试！"));
           },
-          onerror: function () {
+          onerror: () => {
             reject(new Error("下载失败，请重试！"));
           },
-          onload: function ({ context = {}, responseText = "" }) {
+          onload: ({ context = {}, responseText = "" }) => {
             let matches;
             if (
               responseText &&
@@ -78,24 +78,41 @@ export default {
         });
       });
     },
-    downloadTorrent(url, name) {
-      return new Promise((resolve, reject) => {
-        GM_download({
-          url,
-          name,
-          saveAs: true,
-          conflictAction: "prompt",
-          onload: function () {
-            resolve();
-          },
-          ontimeout: function () {
+    async downloadTorrent(torrentUrl, torrentName) {
+      const blob = await new Promise((resolve, reject) => {
+        // direct download of .torrent file is not allowed by default
+        // so we can not use GM_download now
+        GM_xmlhttpRequest({
+          method: "GET",
+          url: torrentUrl,
+          responseType: "blob",
+          timeout: 5000,
+          ontimeout: () => {
             reject(new Error("下载超时，请重试！"));
           },
-          onerror: function () {
+          onerror: () => {
             reject(new Error("下载失败，请重试！"));
+          },
+          onload: ({ response }) => {
+            resolve(response);
           },
         });
       });
+
+      const herf = URL.createObjectURL(blob);
+
+      const anchor = document.createElement("a");
+      anchor.href = herf;
+      anchor.style.display = "none";
+      anchor.download = torrentName;
+
+      this.$el.appendChild(anchor);
+      anchor.click();
+
+      setTimeout(() => {
+        this.$el.removeChild(anchor);
+        URL.revokeObjectURL(herf);
+      }, 0);
     },
     async getAndDownloadTorrent() {
       if (!this.detailLink) {

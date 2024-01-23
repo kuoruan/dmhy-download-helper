@@ -5,8 +5,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "serve": "vite",
+    "dev": "vite build --watch --mode dev",
     "build": "vite build",
+    "serve": "vite preview",
     "lint": "eslint --ext .js,.cjs,.vue .",
     "lint:fix": "eslint --fix --ext .js,.cjs,.vue ."
   },

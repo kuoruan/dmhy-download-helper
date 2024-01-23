@@ -27,10 +27,10 @@ if (fs.existsSync(buildNumberFile)) {
   buildNumber = +data || 0;
 }
 
-export default defineConfig(({ command }) => {
-  const isServe = command === "serve";
+export default defineConfig(({ mode }) => {
+  const isDev = mode === "dev";
 
-  if (isServe) {
+  if (isDev) {
     writeNewBuildNumber(++buildNumber);
   }
 
@@ -39,9 +39,6 @@ export default defineConfig(({ command }) => {
       alias: {
         "@": "/src",
       },
-    },
-    server: {
-      port: 10010,
     },
     build: {
       minify: false,
@@ -70,7 +67,7 @@ export default defineConfig(({ command }) => {
       banner({
         content: (fileName) => {
           return fileName.endsWith(".js")
-            ? createBanner(isServe, buildNumber)
+            ? createBanner(isDev, buildNumber)
             : "";
         },
         verify: false,

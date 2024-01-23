@@ -30,3 +30,6 @@ export function hashCode(str) {
 
   return hash;
 }
+
+export const TORRENT_LINK_TAG_REGEX =
+  /<a(?:.+)href="((?:https?:)?\/\/[a-zA-Z0-9.-]+\/[^"]+\.torrent)"(?:.*)>(.+)?<\/a>/;

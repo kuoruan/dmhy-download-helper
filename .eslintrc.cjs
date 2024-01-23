@@ -17,4 +17,14 @@ module.exports = {
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
   },
+  overrides: [
+    {
+      files: ["tests/**"],
+      env: {
+        "vitest/env": true,
+      },
+      plugins: ["vitest"],
+      extends: ["plugin:vitest/recommended"],
+    },
+  ],
 };

@@ -18,6 +18,8 @@ td(
 </template>
 
 <script>
+import { TORRENT_LINK_TAG_REGEX } from "@/utils/misc";
+
 export default {
   name: "TorrentDownloadItem",
   props: {
@@ -57,9 +59,7 @@ export default {
             let matches;
             if (
               responseText &&
-              (matches = responseText.match(
-                /<a(?:.+)href="((?:https?:)?\/\/[a-zA-Z0-9.-]+\/[^"]+\.torrent)"(?:.*)>(.+)?<\/a>/,
-              )) &&
+              (matches = responseText.match(TORRENT_LINK_TAG_REGEX)) &&
               matches.length >= 3
             ) {
               let url = matches[1];

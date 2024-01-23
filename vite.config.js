@@ -79,5 +79,10 @@ export default defineConfig(({ mode }) => {
         },
       }),
     ],
+
+    test: {
+      include: ["tests/*.{test,spec}.js"],
+      globals: true,
+    },
   };
 });

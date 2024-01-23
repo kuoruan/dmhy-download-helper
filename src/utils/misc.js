@@ -32,7 +32,7 @@ export function hashCode(str) {
 }
 
 const TORRENT_LINK_TAG_REGEX =
-  /<a(?:.+)href="((?:https?:)?\/\/[a-zA-Z0-9.-]+[^"]+\.torrent)"(?:.*)>(.+)?<\/a>/;
+  /<a(?:.+)href=["']((?:https?:)?\/\/[^"']+\.torrent)["'](?:.*)>(.+)?<\/a>/;
 
 export function getTorrentLinkFromHTML(html) {
   const matches = html.match(TORRENT_LINK_TAG_REGEX);

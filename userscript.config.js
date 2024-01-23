@@ -12,6 +12,10 @@ export default {
   homepage: packageConfig.homepage,
   supportURL: packageConfig.bugs ? packageConfig.bugs.url : "",
   match: [
+    "*://www.dmhy.org/",
+    "*://www.dmhy.org/topics/list/*",
+    "*://www.dmhy.org/topics/list?*",
+    "*://www.dmhy.org/topics/view/*",
     "*://share.dmhy.org/",
     "*://share.dmhy.org/topics/list/*",
     "*://share.dmhy.org/topics/list?*",

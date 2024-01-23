@@ -1,6 +1,6 @@
 {
   "name": "dmhy-download-helper",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "A userscript for share.dmhy.org.",
   "private": true,
   "type": "module",
